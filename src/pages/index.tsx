@@ -131,4 +131,9 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data }) => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = () => (
+  <>
+    <title>Only LDN</title>
+    <meta name="description" content="Hello World" />
+  </>
+);

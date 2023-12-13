@@ -146,7 +146,7 @@ article.single-video {
 
 @media (min-width: 628px) {
   .single-video.full_layout {
-    max-height: 700px;
+    height: 700px;
   }
 }
 @media (max-width: 628px) {
@@ -188,12 +188,12 @@ article.single-video {
   height: 100%;
 }
 
-.feature-image > img {
+/* .feature-image > img {
   width: 100vw;
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
-}
+} */
 
 .video-information {
   position: absolute;

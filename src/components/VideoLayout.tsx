@@ -12,7 +12,12 @@ const generateLayoutForThrees = (itemsArray: any) => {
   for (let i = 0; i < itemsArray.length; i += 3) {
     if (i === 0) {
       layout.push(
-        <SingleVideo key={i} className="full_layout" item={itemsArray[i]} />
+        <SingleVideo
+          single={true}
+          key={i}
+          className="full_layout"
+          item={itemsArray[i]}
+        />
       );
       continue;
     }
@@ -22,17 +27,20 @@ const generateLayoutForThrees = (itemsArray: any) => {
         layout.push(
           <div key={i + 1} className="row style_a">
             <SingleVideo
+              single={false}
               key={i - 2}
               className="layout_half"
               item={itemsArray[i - 2]}
             />
             <div className="quarter-wrapper">
               <SingleVideo
+                single={false}
                 key={i - 2 + 1}
                 className="layout_quarter"
                 item={itemsArray[i - 2 + 1]}
               />
               <SingleVideo
+                single={false}
                 key={i - 2 + 2}
                 className="layout_quarter"
                 item={itemsArray[i - 2 + 2]}
@@ -46,17 +54,20 @@ const generateLayoutForThrees = (itemsArray: any) => {
           <div key={i} className="row style_b">
             <div className="quarter-wrapper">
               <SingleVideo
+                single={false}
                 key={i - 2}
                 className="layout_quarter"
                 item={itemsArray[i - 2]}
               />
               <SingleVideo
+                single={false}
                 key={i - 2 + 1}
                 className="layout_quarter"
                 item={itemsArray[i - 2 + 1]}
               />
             </div>
             <SingleVideo
+              single={false}
               key={i - 2 + 2}
               className="layout_half"
               item={itemsArray[i - 2 + 2]}
@@ -68,16 +79,19 @@ const generateLayoutForThrees = (itemsArray: any) => {
         layout.push(
           <div key={i} className="row style_c">
             <SingleVideo
+              single={false}
               key={i - 2}
               className="layout_third"
               item={itemsArray[i - 2]}
             />
             <SingleVideo
+              single={false}
               key={i - 2 + 1}
               className="layout_third"
               item={itemsArray[i - 2 + 1]}
             />
             <SingleVideo
+              single={false}
               key={i - 2 + 2}
               className="layout_third"
               item={itemsArray[i - 2 + 2]}
@@ -99,7 +113,12 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
   for (let i = 0; i < itemsArray.length; i += 3) {
     if (i === 0) {
       layout.push(
-        <SingleVideo key={i} className="full_layout" item={itemsArray[i]} />
+        <SingleVideo
+          single={true}
+          key={i}
+          className="full_layout"
+          item={itemsArray[i]}
+        />
       );
       continue;
     }
@@ -109,17 +128,20 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
         layout.push(
           <div key={i} className="row style_a">
             <SingleVideo
+              single={false}
               key={i - 2}
               className="layout_half"
               item={itemsArray[i - 2]}
             />
             <div className="quarter-wrapper">
               <SingleVideo
+                single={false}
                 key={i - 2 + 1}
                 className="layout_quarter"
                 item={itemsArray[i - 2 + 1]}
               />
               <SingleVideo
+                single={false}
                 key={i - 2 + 2}
                 className="layout_quarter"
                 item={itemsArray[i - 2 + 2]}
@@ -133,17 +155,20 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
           <div key={i} className="row style_b">
             <div className="quarter-wrapper">
               <SingleVideo
+                single={false}
                 key={i - 2}
                 className="layout_quarter"
                 item={itemsArray[i - 2]}
               />
               <SingleVideo
+                single={false}
                 key={i - 2 + 1}
                 className="layout_quarter"
                 item={itemsArray[i - 2 + 1]}
               />
             </div>
             <SingleVideo
+              single={false}
               key={i - 2 + 2}
               className="layout_half"
               item={itemsArray[i - 2 + 2]}
@@ -155,16 +180,19 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
         layout.push(
           <div key={i} className="row style_c">
             <SingleVideo
+              single={false}
               key={i - 2}
               className="layout_third"
               item={itemsArray[i - 2]}
             />
             <SingleVideo
+              single={false}
               key={i - 2 + 1}
               className="layout_third"
               item={itemsArray[i - 2 + 1]}
             />
             <SingleVideo
+              single={false}
               key={i - 2 + 2}
               className="layout_third"
               item={itemsArray[i - 2 + 2]}
@@ -179,21 +207,25 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
       layout.push(
         <div key={i + 1} className="row style_d">
           <SingleVideo
+            single={false}
             key={i + 1}
             className="layout_fourth"
             item={itemsArray[i + 1]}
           />
           <SingleVideo
+            single={false}
             key={i + 2}
             className="layout_fourth"
             item={itemsArray[i + 2]}
           />
           <SingleVideo
+            single={false}
             key={i + 3}
             className="layout_fourth"
             item={itemsArray[i + 3]}
           />
           <SingleVideo
+            single={false}
             key={i + 4}
             className="layout_fourth"
             item={itemsArray[i + 4]}
@@ -214,7 +246,12 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
   for (let i = 0; i < itemsArray.length; i += 3) {
     if (i === 0) {
       layout.push(
-        <SingleVideo key={i} className="full_layout" item={itemsArray[i]} />
+        <SingleVideo
+          single={true}
+          key={i}
+          className="full_layout"
+          item={itemsArray[i]}
+        />
       );
       i -= 2;
       continue;
@@ -222,18 +259,26 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
     if (i === 1) {
       layout.push(
         <div key={i + 100} className="row style_d">
-          <SingleVideo key={i} className="layout_fourth" item={itemsArray[i]} />
           <SingleVideo
+            single={false}
+            key={i}
+            className="layout_fourth"
+            item={itemsArray[i]}
+          />
+          <SingleVideo
+            single={false}
             key={i + 1}
             className="layout_fourth"
             item={itemsArray[i + 1]}
           />
           <SingleVideo
+            single={false}
             key={i + 2}
             className="layout_fourth"
             item={itemsArray[i + 2]}
           />
           <SingleVideo
+            single={false}
             key={i + 3}
             className="layout_fourth"
             item={itemsArray[i + 3]}
@@ -246,14 +291,21 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
       case 0:
         layout.push(
           <div key={i + 100} className="row style_a">
-            <SingleVideo key={i} className="layout_half" item={itemsArray[i]} />
+            <SingleVideo
+              single={false}
+              key={i}
+              className="layout_half"
+              item={itemsArray[i]}
+            />
             <div className="quarter-wrapper">
               <SingleVideo
+                single={false}
                 key={i + 1}
                 className="layout_quarter"
                 item={itemsArray[i + 1]}
               />
               <SingleVideo
+                single={false}
                 key={i + 2}
                 className="layout_quarter"
                 item={itemsArray[i + 2]}
@@ -267,17 +319,20 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
           <div key={i + 100} className="row style_b">
             <div className="quarter-wrapper">
               <SingleVideo
+                single={false}
                 key={i}
                 className="layout_quarter"
                 item={itemsArray[i]}
               />
               <SingleVideo
+                single={false}
                 key={i + 1}
                 className="layout_quarter"
                 item={itemsArray[i + 1]}
               />
             </div>
             <SingleVideo
+              single={false}
               key={i + 2}
               className="layout_half"
               item={itemsArray[i + 2]}
@@ -289,16 +344,19 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
         layout.push(
           <div key={i + 100} className="row style_c">
             <SingleVideo
+              single={false}
               key={i}
               className="layout_third"
               item={itemsArray[i]}
             />
             <SingleVideo
+              single={false}
               key={i + 1}
               className="layout_third"
               item={itemsArray[i + 1]}
             />
             <SingleVideo
+              single={false}
               key={i + 2}
               className="layout_third"
               item={itemsArray[i + 2]}
@@ -313,21 +371,25 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
       layout.push(
         <div key={i + 100} className="row style_d">
           <SingleVideo
+            single={false}
             key={i + 3}
             className="layout_fourth"
             item={itemsArray[i + 3]}
           />
           <SingleVideo
+            single={false}
             key={i + 4}
             className="layout_fourth"
             item={itemsArray[i + 4]}
           />
           <SingleVideo
+            single={false}
             key={i + 5}
             className="layout_fourth"
             item={itemsArray[i + 5]}
           />
           <SingleVideo
+            single={false}
             key={i + 6}
             className="layout_fourth"
             item={itemsArray[i + 6]}

@@ -1,10 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import Video from "./Video";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 interface SingleVideoProps {
   className: string;
   item: any;
+  single: boolean;
 }
 
 interface StyledVideoComponentProps {
@@ -27,7 +28,11 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   }
 `;
 
-const SingleVideo: React.FC<SingleVideoProps> = ({ className, item }) => {
+const SingleVideo: React.FC<SingleVideoProps> = ({
+  className,
+  item,
+  single,
+}) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
   const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = () => {
@@ -54,7 +59,14 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ className, item }) => {
         </div>
 
         <div className="feature-image">
-          <img src={item?.featuredImage.asset.url} />
+          <GatsbyImage
+            alt=""
+            style={
+              single ? { width: "100vw", height: "100%" } : { height: "100%" }
+            }
+            imgStyle={{ objectFit: "cover", height: "100%" }}
+            image={item?.featuredImage.asset.gatsbyImageData}
+          />
         </div>
 
         {featuredVideo && (

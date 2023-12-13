@@ -87,7 +87,7 @@ export const query = graphql`
           }
           featuredImage {
             asset {
-              url
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
             }
           }
           featuredVideo {

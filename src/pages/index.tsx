@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
@@ -41,6 +41,14 @@ export interface PortfolioNode {
       asset: {
         url: string;
       };
+    };
+    awards: {
+      awardLogo: {
+        asset: {
+          url: string;
+        };
+      };
+      award: string;
     };
   };
 }
@@ -94,6 +102,14 @@ export const query = graphql`
             asset {
               url
             }
+          }
+          awards {
+            awardLogo {
+              asset {
+                gatsbyImageData(width: 50, height: 50, placeholder: BLURRED)
+              }
+            }
+            award
           }
         }
       }

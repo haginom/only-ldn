@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "../styles/layout.css";
 import { CategoryNode } from "../pages";
 import { IoLogoVimeo } from "react-icons/io";
+import { MdOutlineMail } from "react-icons/md";
 
 interface SiderbarProps {
   Categories: CategoryNode[];
@@ -13,6 +14,11 @@ interface SiderbarProps {
 
 const SidebarContainer = styled.div<{ isOpen: boolean }>`
   left: ${({ isOpen }) => (isOpen ? "0px" : "-18.75rem")};
+
+  @media screen and (max-width: 628px) {
+    left: ${({ isOpen }) => (isOpen ? "0px" : "-100%")};
+    transition-duration: 1.65s;
+  }
 `;
 const Sidebar: React.FC<SiderbarProps> = ({
   Categories,
@@ -47,6 +53,11 @@ const Sidebar: React.FC<SiderbarProps> = ({
           <li>
             <a href="https://vimeo.com/onlyldn">
               <IoLogoVimeo size={25} />
+            </a>
+          </li>
+          <li className="hamburger-contact">
+            <a href="mailto:david@onlyldn.com">
+              <MdOutlineMail size={26} />
             </a>
           </li>
         </ul>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { useEffect } from "react";
 
 interface SingleVideoProps {
   className: string;
@@ -46,6 +47,16 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const creditsArray: Credit[] = Object.values(item?.credits || {});
   const featuredVideo = item.featuredVideo?.asset.url;
 
+  useEffect(() => {
+    const loadLozad = async () => {
+      const lozad = require("lozad");
+      const observer = lozad();
+      observer.observe();
+    };
+
+    loadLozad();
+  });
+
   return (
     <StyledVideoComponent
       isHovered={isHovered}
@@ -57,7 +68,6 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
         <div className="single-video-title">
           <h2 className="video-title">{item?.projectTitle}</h2>
         </div>
-
         <div className="feature-image">
           <GatsbyImage
             alt=""
@@ -68,23 +78,21 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             image={item?.featuredImage.asset.gatsbyImageData}
           />
         </div>
-
         {featuredVideo && (
-          <div className="mov-file">
-            <video
-              id="background-video"
-              muted
-              loop
-              autoPlay
-              className="video_grid___video"
-            >
-              <track default kind="description" srcLang="en" />
-              <source src={item.featuredVideo?.asset?.url} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `<video   id="background-video"
+            muted
+            loop
+            autoplay
+            playsinline
+          preload="metadata"
+            className="lozad video_grid___video"> <source src=${item.featuredVideo?.asset?.url} type="video/mp4" /> 
+            <track default kind="description" srcLang="en" /></video>`,
+            }}
+            className="mov-file"
+          />
         )}
-
         <div className="video-information">
           <div className="credits">
             {creditsArray.map(({ job, name }, index) => (
@@ -94,6 +102,18 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
               </p>
             ))}
           </div>
+        </div>
+        <div className="awards">
+          {item.awards && item.awards.length > 0
+            ? item.awards.map((award: any, index: number) => (
+                <div key={index}>
+                  <GatsbyImage
+                    alt={`${String(award.award)} logo`}
+                    image={award.awardLogo.asset.gatsbyImageData}
+                  />
+                </div>
+              ))
+            : null}
         </div>
       </a>
     </StyledVideoComponent>

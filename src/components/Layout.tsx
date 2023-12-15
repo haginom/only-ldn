@@ -32,6 +32,12 @@ const HamburgerContainer = styled.div<StyledHamburgerContainerProps>`
   transition-duration: 0.65s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   margin-top: 0.5rem;
+
+  @media screen and (max-width: 628px) {
+    right: ${(props) => (props.$isOpen ? "1rem" : "initial")};
+    left: ${(props) => (props.$isOpen ? "initial" : "1rem")};
+    transition-duration: 1.65s;
+  }
 `;
 
 const Layout: React.FC<LayoutProps> = ({

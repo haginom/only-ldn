@@ -21,6 +21,7 @@
     "gatsby": "^5.12.4",
     "gatsby-plugin-google-gtag": "^5.12.3",
     "gatsby-plugin-image": "^3.12.3",
+    "gatsby-plugin-postcss": "^6.13.0",
     "gatsby-plugin-sharp": "^5.12.3",
     "gatsby-plugin-sitemap": "^6.12.3",
     "gatsby-plugin-styled-components": "^6.12.0",
@@ -29,21 +30,17 @@
     "gatsby-source-sanity": "^7.9.1",
     "gatsby-transformer-sharp": "^5.12.3",
     "hamburger-react": "^2.5.0",
-    "lozad": "^1.16.0",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
+    "react-intersection-observer": "^9.5.3",
     "styled-components": "^6.1.1"
   },
   "devDependencies": {
     "@types/node": "^20.3.3",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
-    "autoprefixer": "^10.4.16",
-    "gatsby-plugin-postcss": "^6.12.0",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.3.6",
     "typescript": "^5.1.6"
   }
 }

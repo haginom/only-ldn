@@ -42,6 +42,11 @@ export interface PortfolioNode {
         url: string;
       };
     };
+    shortVideo: {
+      _rawAsset: {
+        _ref: string;
+      };
+    };
     awards: {
       awardLogo: {
         asset: {
@@ -102,6 +107,9 @@ export const query = graphql`
             asset {
               url
             }
+          }
+          shortVideo {
+            _rawAsset(resolveReferences: { maxDepth: 10 })
           }
           awards {
             awardLogo {

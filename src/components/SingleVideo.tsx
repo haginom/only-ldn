@@ -1,7 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface SingleVideoProps {
   className: string;
@@ -35,6 +36,11 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   single,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.5,
+  });
 
   const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = () => {
     setIsHovered(true);
@@ -45,24 +51,28 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   };
 
   const creditsArray: Credit[] = Object.values(item?.credits || {});
-  const featuredVideo = item.featuredVideo?.asset.url;
+  const featuredVideo = item.featuredVideo?.asset?.url;
 
   useEffect(() => {
-    const loadLozad = async () => {
-      const lozad = require("lozad");
-      const observer = lozad();
-      observer.observe();
-    };
-
-    loadLozad();
-  });
+    console.log("inView", inView);
+    console.log("videoRef", videoRef);
+    if (inView && videoRef.current) {
+      videoRef.current.play().catch((error: any) => {
+        console.log(videoRef.current);
+        console.error("Error playing video:", error);
+      });
+    } else if (!inView && videoRef.current && !videoRef.current.paused) {
+      videoRef.current.pause();
+    }
+  }, [inView]);
 
   return (
     <StyledVideoComponent
       isHovered={isHovered}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`single-video ${className}`}
+      className={`single-video  ${className}`}
+      ref={ref}
     >
       <a href={`/videos/${item?.slug?.current}`}>
         <div className="single-video-title">
@@ -79,20 +89,21 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
           />
         </div>
         {featuredVideo && (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `<video   id="background-video"
-            muted
-            loop
-            autoplay
-            playsinline
-          preload="metadata"
-            className="lozad video_grid___video"> <source src=${item.featuredVideo?.asset?.url} type="video/mp4" /> 
-            <track default kind="description" srcLang="en" /></video>`,
-            }}
-            className="mov-file"
-          />
+          <div className="mov-file">
+            <video
+              id="background-video"
+              muted
+              loop
+              ref={videoRef}
+              poster={item.featuredImage?.asset?.url}
+              className="video_grid___video"
+            >
+              <source src={item.featuredVideo?.asset?.url} type="video/mp4" />
+              <track default kind="description" srcLang="en" />
+            </video>
+          </div>
         )}
+
         <div className="video-information">
           <div className="credits">
             {creditsArray.map(({ job, name }, index) => (
@@ -108,6 +119,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             ? item.awards.map((award: any, index: number) => (
                 <div key={index}>
                   <GatsbyImage
+                    className="lozad"
                     alt={`${String(award.award)} logo`}
                     image={award.awardLogo.asset.gatsbyImageData}
                   />

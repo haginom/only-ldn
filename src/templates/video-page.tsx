@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Video from "../components/Video";
+import { RxCross1 } from "react-icons/rx";
 
 interface BlogPostTemplateProps {
   data: {
@@ -33,6 +34,9 @@ interface BlogPostTemplateProps {
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   return (
     <div>
+      <a className="video-back" href="/">
+        <RxCross1 size={26} />
+      </a>
       <article className="video-embed__container">
         <Video videoSrcURL={data.sanityPortfolio.vimeoUrl} />
       </article>

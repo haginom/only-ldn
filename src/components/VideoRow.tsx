@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import SingleVideo from "./SingleVideo"; // Make sure to import SingleVideo or update the import path
 
 interface VideoRowProps {

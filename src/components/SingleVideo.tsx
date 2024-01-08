@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import { Divide } from "hamburger-react";
 
 interface SingleVideoProps {
   className: string;
@@ -26,7 +27,7 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   div.video-information {
     visibility: ${(props) => (props.isHovered ? "visible" : "hidden")};
     opacity: ${(props) => (props.isHovered ? "1" : "0")};
-    transition: visibility 0s, opacity 0.6s linear;
+    transition: visibility 0s, opacity 0.2s linear;
   }
 `;
 
@@ -54,11 +55,8 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const featuredVideo = item.featuredVideo?.asset?.url;
 
   useEffect(() => {
-    console.log("inView", inView);
-    console.log("videoRef", videoRef);
     if (inView && videoRef.current) {
       videoRef.current.play().catch((error: any) => {
-        console.log(videoRef.current);
         console.error("Error playing video:", error);
       });
     } else if (!inView && videoRef.current && !videoRef.current.paused) {
@@ -66,6 +64,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
     }
   }, [inView]);
 
+  console.log(item.awards);
   return (
     <StyledVideoComponent
       isHovered={isHovered}
@@ -117,13 +116,12 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
         <div className="awards">
           {item.awards && item.awards.length > 0
             ? item.awards.map((award: any, index: number) => (
-                <div key={index}>
-                  <GatsbyImage
-                    className="lozad"
-                    alt={`${String(award.award)} logo`}
-                    image={award.awardLogo.asset.gatsbyImageData}
-                  />
-                </div>
+                <GatsbyImage
+                  key={index}
+                  className="lozad"
+                  alt={`${String(award.award)} logo`}
+                  image={award.awardLogo.asset.gatsbyImageData}
+                />
               ))
             : null}
         </div>

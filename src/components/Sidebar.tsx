@@ -42,13 +42,18 @@ const Sidebar: React.FC<SiderbarProps> = ({
     ) : null
   );
 
+  linkElements.unshift(
+    <li key="home">
+      <a href="/">Home</a>
+    </li>
+  );
+
   return (
     <SidebarContainer isOpen={isOpen} className="nav--main">
       <nav className="nav--head">
         <ul className="nav-list nav-list--head">{linkElements}</ul>
       </nav>
       <nav className="nav--foot">
-        {" "}
         <ul className="nav-list nav-list--foot">
           <li>
             <a href="https://vimeo.com/onlyldn">

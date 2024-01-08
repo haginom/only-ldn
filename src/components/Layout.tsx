@@ -5,8 +5,10 @@ import Hamburger from "hamburger-react";
 import "../styles/layout.css";
 import styled from "styled-components";
 import { CategoryNode } from "../pages";
-import { MdOutlineMail } from "react-icons/md";
+import { PiEnvelope } from "react-icons/pi";
 import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { useStaticQuery, graphql } from "gatsby";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -47,15 +49,25 @@ const Layout: React.FC<LayoutProps> = ({
   setSelectedCategory,
 }) => {
   const [isOpen, setOpen] = useState(false);
+  const data = useStaticQuery(graphql`
+    query {
+      logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
+      }
+    }
+  `);
 
+  console.log(data.logo.childImageSharp.gatsbyImageData);
   return (
     <main>
       <NavContainer>
         <section className="head" role="banner">
           <h1 className="head-title">
             <a href="/">
-              <StaticImage
-                src="../images/ONLY_LOGO_white.png"
+              <GatsbyImage
+                image={data?.logo.childImageSharp.gatsbyImageData}
                 imgStyle={{ objectFit: "contain" }}
                 alt="Logo"
               />
@@ -72,8 +84,8 @@ const Layout: React.FC<LayoutProps> = ({
           isOpen={isOpen}
         />
         <section className="contact">
-          <a href="mailto:david@onlyldn.com">
-            <MdOutlineMail size={26} />
+          <a className="contact-link" href="mailto:david@onlyldn.com">
+            <PiEnvelope size={40} />
           </a>
         </section>
       </NavContainer>

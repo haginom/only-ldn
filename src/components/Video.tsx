@@ -8,7 +8,7 @@ const Video: React.FC<VideoProps> = ({ videoSrcURL }) => (
   <div className="video-page--div">
     <iframe
       src={videoSrcURL}
-      allow="accelerometer;  encrypted-media; gyroscope; picture-in-picture"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       frameBorder="0"
       allowFullScreen
     />

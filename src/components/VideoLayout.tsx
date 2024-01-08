@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from "react";
+import VideoRow from "./VideoRow";
 
 interface VideoLayoutProps {
   PortfolioItems: any[]; // Adjust the type based on your actual data structure
@@ -6,7 +7,6 @@ interface VideoLayoutProps {
 
 import SingleVideo from "./SingleVideo";
 // const VideoRow = lazy(() => import("./VideoRow"));
-const VideoRow = lazy(() => delayForDemo(import("./VideoRow")));
 
 const generateLayoutForThrees = (itemsArray: any) => {
   let layout = [];
@@ -15,13 +15,12 @@ const generateLayoutForThrees = (itemsArray: any) => {
   for (let i = 0; i < itemsArray.length; i += 3) {
     if (i === 0) {
       layout.push(
-        <Suspense fallback={<div>Loading...</div>} key={i}>
-          <SingleVideo
-            single={true}
-            className="full_layout"
-            item={itemsArray[i]}
-          />
-        </Suspense>
+        <SingleVideo
+          key={i}
+          single={true}
+          className="full_layout"
+          item={itemsArray[i]}
+        />
       );
       i -= 2;
       continue;
@@ -30,23 +29,17 @@ const generateLayoutForThrees = (itemsArray: any) => {
     switch (layoutType) {
       case 0:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_a" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_a" itemsArray={itemsArray} />
         );
         break;
       case 1:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_b" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_b" itemsArray={itemsArray} />
         );
         break;
       case 2:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_c" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_c" itemsArray={itemsArray} />
         );
         break;
     }
@@ -79,23 +72,17 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
     switch (layoutType) {
       case 0:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_a" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_a" itemsArray={itemsArray} />
         );
         break;
       case 1:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_b" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_b" itemsArray={itemsArray} />
         );
         break;
       case 2:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_c" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_c" itemsArray={itemsArray} />
         );
         break;
     }
@@ -155,53 +142,45 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
     }
     if (i === 1) {
       layout.push(
-        <Suspense fallback={<div>Loading...</div>} key={i + 100}>
-          <div className="row style_d">
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 1]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 2]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 3]}
-            />
-          </div>
-        </Suspense>
+        <div className="row style_d">
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i]}
+          />
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 1]}
+          />
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 2]}
+          />
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 3]}
+          />
+        </div>
       );
       i += 4;
     }
     switch (layoutType) {
       case 0:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_a" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_a" itemsArray={itemsArray} />
         );
         break;
       case 1:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_b" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_b" itemsArray={itemsArray} />
         );
         break;
       case 2:
         layout.push(
-          <Suspense fallback={<div>Loading...</div>} key={i}>
-            <VideoRow i={i} rowStyle="style_c" itemsArray={itemsArray} />
-          </Suspense>
+          <VideoRow i={i} rowStyle="style_c" itemsArray={itemsArray} />
         );
         break;
     }
@@ -209,30 +188,28 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
 
     if (itemsArray.length - i === 7) {
       layout.push(
-        <Suspense fallback={<div>Loading...</div>} key={i + 100}>
-          <div className="row style_d">
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 3]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 4]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 5]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 6]}
-            />
-          </div>
-        </Suspense>
+        <div className="row style_d">
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 3]}
+          />
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 4]}
+          />
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 5]}
+          />
+          <SingleVideo
+            single={false}
+            className="layout_fourth"
+            item={itemsArray[i + 6]}
+          />
+        </div>
       );
       break;
     }
@@ -252,11 +229,5 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({ PortfolioItems }) => {
     </section>
   );
 };
-
-function delayForDemo(promise: any) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 100);
-  }).then(() => promise);
-}
 
 export default VideoLayout;

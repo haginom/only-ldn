@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import { Divide } from "hamburger-react";
 
 interface SingleVideoProps {
   className: string;
@@ -43,17 +42,20 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
     threshold: 0.5,
   });
 
-  const handleMouseEnter: React.MouseEventHandler<HTMLDivElement> = () => {
+  const handleMouseEnter: React.TouchEventHandler<HTMLDivElement> &
+    React.MouseEventHandler<HTMLDivElement> = () => {
     setIsHovered(true);
   };
 
-  const handleMouseLeave: React.MouseEventHandler<HTMLDivElement> = () => {
+  const handleMouseLeave: React.TouchEventHandler<HTMLDivElement> &
+    React.MouseEventHandler<HTMLDivElement> = () => {
     setIsHovered(false);
   };
 
   const creditsArray: Credit[] = Object.values(item?.credits || {});
   const featuredVideo = item.featuredVideo?.asset?.url;
 
+  console.log(item.vimeoUrl);
   useEffect(() => {
     if (inView && videoRef.current) {
       videoRef.current.muted = true;
@@ -65,12 +67,13 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
     }
   }, [inView]);
 
-  console.log(item.awards);
   return (
     <StyledVideoComponent
       isHovered={isHovered}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleMouseEnter}
+      onTouchEnd={handleMouseLeave}
       className={`single-video  ${className}`}
       ref={ref}
     >
@@ -94,6 +97,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
               id="background-video"
               muted
               loop
+              playsInline
               ref={videoRef}
               poster={item.featuredImage?.asset?.url}
               className="video_grid___video"

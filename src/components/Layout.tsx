@@ -59,7 +59,6 @@ const Layout: React.FC<LayoutProps> = ({
     }
   `);
 
-  console.log(data.logo.childImageSharp.gatsbyImageData);
   return (
     <main>
       <NavContainer>

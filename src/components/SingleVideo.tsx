@@ -56,6 +56,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
 
   useEffect(() => {
     if (inView && videoRef.current) {
+      videoRef.current.muted = true;
       videoRef.current.play().catch((error: any) => {
         console.error("Error playing video:", error);
       });

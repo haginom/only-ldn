@@ -53,7 +53,7 @@ const generateLayoutForThrees = (itemsArray: any) => {
 const generateLayoutRemainderOne = (itemsArray: any) => {
   let layout = [];
   let layoutType = 0;
-
+  console.log(itemsArray);
   for (let i = 0; i < itemsArray.length; i += 3) {
     if (i === 0) {
       layout.push(
@@ -95,22 +95,22 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             <SingleVideo
               single={false}
               className="layout_fourth"
-              item={itemsArray[i + 1]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
-              item={itemsArray[i + 2]}
-            />
-            <SingleVideo
-              single={false}
-              className="layout_fourth"
               item={itemsArray[i + 3]}
             />
             <SingleVideo
               single={false}
               className="layout_fourth"
               item={itemsArray[i + 4]}
+            />
+            <SingleVideo
+              single={false}
+              className="layout_fourth"
+              item={itemsArray[i + 5]}
+            />
+            <SingleVideo
+              single={false}
+              className="layout_fourth"
+              item={itemsArray[i + 6]}
             />
           </div>
         </Suspense>
@@ -220,7 +220,7 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
 
 const VideoLayout: React.FC<VideoLayoutProps> = ({ PortfolioItems }) => {
   let divisibleByThree = (PortfolioItems.length - 1) % 3;
-
+  console.log(divisibleByThree);
   return (
     <section className="playlist-content">
       {divisibleByThree === 0 && generateLayoutForThrees(PortfolioItems)}

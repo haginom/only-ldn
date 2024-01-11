@@ -55,7 +55,6 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const creditsArray: Credit[] = Object.values(item?.credits || {});
   const featuredVideo = item.featuredVideo?.asset?.url;
 
-  console.log(item.vimeoUrl);
   useEffect(() => {
     if (inView && videoRef.current) {
       videoRef.current.muted = true;

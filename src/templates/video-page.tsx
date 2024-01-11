@@ -34,10 +34,10 @@ interface BlogPostTemplateProps {
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   return (
     <div>
-      <a className="video-back" href="/">
-        <RxCross1 size={26} />
-      </a>
       <article className="video-embed__container">
+        <a className="video-back" href="/">
+          <RxCross1 size={26} />
+        </a>
         <Video videoSrcURL={data.sanityPortfolio.vimeoUrl} />
       </article>
     </div>

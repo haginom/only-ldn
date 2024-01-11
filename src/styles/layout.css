@@ -291,7 +291,8 @@ article.single-video {
 .video-back {
   color: white;
   padding: 1rem;
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 @keyframes scaleUp {

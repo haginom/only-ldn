@@ -85,8 +85,6 @@ const generateLayoutForThrees = (itemsArray: any) => {
 };
 
 const generateLayoutRemainderOne = (itemsArray: any) => {
-  console.log(itemsArray, "itemsArray");
-  console.log(itemsArray.length, "itemsArray.length");
   let layout = [];
   let layoutType = 0;
   for (let i = 0; i < itemsArray.length; i += 3) {
@@ -276,7 +274,6 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
 
 const VideoLayout: React.FC<VideoLayoutProps> = ({ PortfolioItems }) => {
   let divisibleByThree = (PortfolioItems.length - 1) % 3;
-  console.log(divisibleByThree, "divisibleByThree");
 
   let layout = [];
 
@@ -302,11 +299,11 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({ PortfolioItems }) => {
   }
 
   return (
-    <section className="playlist-content">
-      <AnimatePresence initial={false} mode={"wait"}>
-        <div key="layout">{layout}</div>
-      </AnimatePresence>
-    </section>
+    <AnimatePresence initial={false} mode={"wait"}>
+      <section className="playlist-content" key="layout">
+        {layout}
+      </section>
+    </AnimatePresence>
   );
 };
 

@@ -82,6 +82,13 @@
   z-index: 1200;
 }
 
+@media (max-width: 628px) {
+  .head-title {
+    width: 6.625rem;
+    height: 1.48977rem;
+  }
+}
+
 .contact {
   position: fixed;
   right: 0.5rem;
@@ -252,9 +259,10 @@ div.single-video {
     height: 40vw;
   }
 }
+
 @media (max-width: 628px) {
   .row {
-    height: initial;
+    height: auto;
   }
   .single-video.full_layout,
   .single-video.layout_half,
@@ -264,6 +272,10 @@ div.single-video {
     height: 400px !important;
   }
   .quarter-wrapper {
+    height: 800px;
+    width: 100vw;
+  }
+  .quarter-wrapper > * {
     width: 100vw !important;
     height: 400px;
   }

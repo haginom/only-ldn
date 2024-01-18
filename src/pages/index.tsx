@@ -127,6 +127,7 @@ export const query = graphql`
 
 const IndexPage: React.FC<PageProps<QueryData>> = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 

@@ -1,11 +1,39 @@
 import React, { lazy, Suspense } from "react";
 import SingleVideo from "./SingleVideo"; // Make sure to import SingleVideo or update the import path
+import { motion } from "framer-motion";
 
 interface VideoRowProps {
   i: number;
   rowStyle: string;
   itemsArray: any[];
 }
+
+const AnimatedSingleVideo = ({
+  motionKey,
+  singleVideoSingle,
+  singleVideoItem,
+  className,
+}: {
+  motionKey: any;
+  singleVideoSingle: any;
+  singleVideoItem: any;
+  className: any;
+}) => {
+  return (
+    <motion.div
+      className={`single-video ${className}`}
+      key={motionKey}
+      initial={{ scale: 0.75, opacity: 0 }}
+      animate={{
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.4, delay: 0, filter: "blur(10px)" },
+      }}
+    >
+      <SingleVideo single={singleVideoSingle} item={singleVideoItem} />
+    </motion.div>
+  );
+};
 
 const VideoRow: React.FC<VideoRowProps> = ({ i, rowStyle, itemsArray }) => {
   const renderVideos = (
@@ -16,17 +44,18 @@ const VideoRow: React.FC<VideoRowProps> = ({ i, rowStyle, itemsArray }) => {
     return itemsArray
       .slice(startIndex, endIndex)
       .map((item, index) => (
-        <SingleVideo
-          single={false}
-          key={i + index}
+        <AnimatedSingleVideo
+          key={index}
           className={className}
-          item={item}
+          motionKey={item.id}
+          singleVideoSingle={false}
+          singleVideoItem={item}
         />
       ));
   };
 
   return (
-    <div key={i} className={`row ${rowStyle}`}>
+    <div className={`row ${rowStyle}`}>
       {rowStyle === "style_a" && (
         <>
           {renderVideos(i, i + 1, "layout_half")}

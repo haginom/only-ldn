@@ -4,47 +4,55 @@ import "../styles/layout.css";
 import { CategoryNode } from "../pages";
 import { IoLogoVimeo } from "react-icons/io";
 import { MdOutlineMail } from "react-icons/md";
+import { Link } from "gatsby";
+import { v4 as uuidv4 } from "uuid";
 
 interface SiderbarProps {
   Categories: CategoryNode[];
   isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   selectedCategory?: string | null;
   setSelectedCategory?: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const SidebarContainer = styled.div<{ isOpen: boolean }>`
-  left: ${({ isOpen }) => (isOpen ? "0px" : "-18.75rem")};
+const SidebarContainer = styled.div<{ isOpen: any }>`
+  left: ${({ isOpen }: { isOpen: boolean }) => (isOpen ? "0px" : "-18.75rem")};
 
   @media screen and (max-width: 628px) {
-    left: ${({ isOpen }) => (isOpen ? "0px" : "-100%")};
+    left: ${({ isOpen }: { isOpen: boolean }) => (isOpen ? "0px" : "-100%")};
     transition-duration: 1.65s;
   }
 `;
 const Sidebar: React.FC<SiderbarProps> = ({
   Categories,
   isOpen,
+  setOpen,
   selectedCategory,
   setSelectedCategory,
 }) => {
-  const handleCategoryClick = (category: string) => {
+  const handleCategoryClick = (category: string | null) => {
     if (setSelectedCategory) {
       setSelectedCategory(category);
+      setOpen(false);
     }
   };
 
-  const linkElements = Categories.map((item, index) =>
-    item.node.released ? (
-      <li key={index}>
+  const linkElements = Categories.map((item, index) => {
+    return item.node.released ? (
+      <li
+        key={uuidv4()}
+        className={selectedCategory === item.node.category ? "selected" : ""}
+      >
         <a onClick={() => handleCategoryClick(item.node.category)} href="#">
           {item.node.category}
         </a>
       </li>
-    ) : null
-  );
+    ) : null;
+  });
 
   linkElements.unshift(
-    <li key="home">
-      <a href="/">Home</a>
+    <li key={0} onClick={() => handleCategoryClick(null)}>
+      <Link to="/">Home</Link>
     </li>
   );
 

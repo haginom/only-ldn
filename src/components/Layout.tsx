@@ -6,9 +6,9 @@ import "../styles/layout.css";
 import styled from "styled-components";
 import { CategoryNode } from "../pages";
 import { PiEnvelope } from "react-icons/pi";
-import { StaticImage } from "gatsby-plugin-image";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -29,15 +29,15 @@ const NavContainer = styled.div`
 
 const HamburgerContainer = styled.div<StyledHamburgerContainerProps>`
   position: fixed;
-  left: ${(props) => (props.$isOpen ? "15rem" : "1rem")};
+  left: ${(props: any) => (props.$isOpen ? "15rem" : "1rem")};
   z-index: 1500;
   transition-duration: 0.65s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   margin-top: 0.5rem;
 
   @media screen and (max-width: 628px) {
-    right: ${(props) => (props.$isOpen ? "1rem" : "initial")};
-    left: ${(props) => (props.$isOpen ? "initial" : "1rem")};
+    right: ${(props: any) => (props.$isOpen ? "1rem" : "initial")};
+    left: ${(props: any) => (props.$isOpen ? "initial" : "1rem")};
     transition-duration: 1.65s;
   }
 `;
@@ -59,18 +59,31 @@ const Layout: React.FC<LayoutProps> = ({
     }
   `);
 
+  const handleLogoClick = () => {
+    if (setSelectedCategory) {
+      setSelectedCategory(null);
+    }
+    setOpen(false);
+  };
+
   return (
     <main>
       <NavContainer>
         <section className="head" role="banner">
-          <h1 className="head-title">
-            <a href="/">
+          <h1>
+            <Link
+              className="head-title"
+              to="#"
+              onClick={() => {
+                handleLogoClick();
+              }}
+            >
               <GatsbyImage
                 image={data?.logo.childImageSharp.gatsbyImageData}
                 imgStyle={{ objectFit: "contain" }}
                 alt="Logo"
               />
-            </a>
+            </Link>
           </h1>
         </section>
         <HamburgerContainer $isOpen={isOpen}>
@@ -81,6 +94,7 @@ const Layout: React.FC<LayoutProps> = ({
           setSelectedCategory={setSelectedCategory}
           Categories={Categories}
           isOpen={isOpen}
+          setOpen={setOpen}
         />
         <section className="contact">
           <a className="contact-link" href="mailto:david@onlyldn.com">

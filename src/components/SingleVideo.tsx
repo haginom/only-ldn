@@ -3,17 +3,11 @@ import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 interface SingleVideoProps {
-  className: string;
   item: any;
   single: boolean;
-}
-
-interface StyledVideoComponentProps {
-  isHovered: boolean;
-  onMouseEnter: React.MouseEventHandler<HTMLDivElement> | undefined;
-  onMouseLeave: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 interface Credit {
@@ -21,20 +15,7 @@ interface Credit {
   name: string;
 }
 
-const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
-  div.single-video-title,
-  div.video-information {
-    visibility: ${(props) => (props.isHovered ? "visible" : "hidden")};
-    opacity: ${(props) => (props.isHovered ? "1" : "0")};
-    transition: visibility 0s, opacity 0.2s linear;
-  }
-`;
-
-const SingleVideo: React.FC<SingleVideoProps> = ({
-  className,
-  item,
-  single,
-}) => {
+const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { ref, inView } = useInView({
@@ -67,19 +48,23 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   }, [inView]);
 
   return (
-    <StyledVideoComponent
-      isHovered={isHovered}
+    <article
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleMouseEnter}
       onTouchEnd={handleMouseLeave}
-      className={`single-video  ${className}`}
       ref={ref}
     >
       <a href={`/videos/${item?.slug?.current}`}>
-        <div className="single-video-title">
+        <motion.div
+          className="single-video-title"
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            visibility: isHovered ? "visible" : "hidden",
+          }}
+        >
           <h2 className="video-title">{item?.projectTitle}</h2>
-        </div>
+        </motion.div>
         <div className="feature-image">
           <GatsbyImage
             alt=""
@@ -93,6 +78,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
         {featuredVideo && (
           <div className="mov-file">
             <video
+              key={item?.id}
               id="background-video"
               muted
               loop
@@ -107,7 +93,13 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
           </div>
         )}
 
-        <div className="video-information">
+        <motion.div
+          className="video-information"
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            visibility: isHovered ? "visible" : "hidden",
+          }}
+        >
           <div className="credits">
             {creditsArray.map(({ job, name }, index) => (
               <p key={index} className="credit">
@@ -116,7 +108,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
               </p>
             ))}
           </div>
-        </div>
+        </motion.div>
         <div className="awards">
           {item.awards && item.awards.length > 0
             ? item.awards.map((award: any, index: number) => (
@@ -130,7 +122,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             : null}
         </div>
       </a>
-    </StyledVideoComponent>
+    </article>
   );
 };
 export default SingleVideo;

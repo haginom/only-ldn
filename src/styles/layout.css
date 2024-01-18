@@ -38,6 +38,13 @@
   line-height: 1.8;
 }
 
+.nav-list--head > li:hover {
+  color: #808588;
+}
+.nav-list--head > li.selected {
+  color: #808588;
+}
+
 .nav-list--foot {
   display: flex;
   justify-content: flex-start;
@@ -64,10 +71,10 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
+  top: 0.2rem;
   z-index: 1400;
   display: block;
-  width: 13.75rem;
+  width: 12rem;
   color: white;
   height: 2.75rem;
   margin: 0.7rem auto;
@@ -107,7 +114,7 @@
   height: 40vw;
 }
 
-article.single-video {
+div.single-video {
   position: relative;
   cursor: pointer;
 }
@@ -293,17 +300,4 @@ article.single-video {
   padding: 1rem;
   position: absolute;
   right: 0;
-}
-
-@keyframes scaleUp {
-  from {
-    transform: scale(0.1);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
-article.single-video {
-  animation: scaleUp 0.3s ease-in-out;
 }

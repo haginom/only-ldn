@@ -55,6 +55,11 @@ const Sidebar: React.FC<SiderbarProps> = ({
       <Link to="/">Home</Link>
     </li>
   );
+  linkElements.push(
+    <li key={linkElements.length} onClick={() => handleCategoryClick(null)}>
+      <Link to="/contact">Contact</Link>
+    </li>
+  );
 
   return (
     <SidebarContainer isOpen={isOpen} className="nav--main">

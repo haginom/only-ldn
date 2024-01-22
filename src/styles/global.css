@@ -87,3 +87,44 @@ a {
 article {
   height: 100%;
 }
+
+.nav-list > li > a {
+  font-family: "Playfair Display Variable", sans-serif;
+}
+
+.contact-page {
+  height: 100vh;
+  background: black;
+  color: white;
+  display: flex;
+}
+
+.video-back.black {
+  color: white;
+}
+
+.contact-page__info {
+  padding-left: 5vw;
+  padding-top: 5vw;
+  padding-bottom: 5vw;
+}
+
+.contact-page__info h1,
+p,
+a {
+  font-family: "Playfair Display Variable", sans-serif;
+  font-weight: 500;
+  max-width: 18rem;
+  margin-bottom: 2rem;
+}
+
+a.get-in-touch {
+  margin-top: 4rem;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+p.title {
+  margin-top: 2rem;
+  margin-bottom: 0rem;
+}

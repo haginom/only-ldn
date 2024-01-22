@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";

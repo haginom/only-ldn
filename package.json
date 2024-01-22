@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
+    "@fontsource-variable/playfair-display": "^5.0.19",
     "babel-plugin-styled-components": "^2.1.4",
     "framer-motion": "^10.18.0",
     "gatsby": "^5.12.4",

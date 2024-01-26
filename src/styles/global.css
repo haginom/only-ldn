@@ -97,6 +97,7 @@ article {
   background: black;
   color: white;
   display: flex;
+  justify-content: center;
 }
 
 .video-back.black {
@@ -105,8 +106,9 @@ article {
 
 .contact-page__info {
   padding-left: 5vw;
-  padding-top: 5vw;
+  padding-top: 15vw;
   padding-bottom: 5vw;
+  text-align: center;
 }
 
 .contact-page__info h1,

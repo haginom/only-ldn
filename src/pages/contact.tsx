@@ -1,9 +1,27 @@
 import * as React from "react";
-import Layout from "../components/Layout";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { graphql } from "gatsby";
 
-const ContactPage = () => {
+export interface QueryData {
+  logo: {
+    childImageSharp: {
+      gatsbyImageData: any;
+    };
+  };
+}
+export const query = graphql`
+  query {
+    logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FULL_WIDTH)
+      }
+    }
+  }
+`;
+
+const ContactPage = ({ data }: { data: QueryData }) => {
   return (
     <>
       <div className="contact-page">
@@ -11,14 +29,17 @@ const ContactPage = () => {
           <RxCross1 size={26} />
         </Link>
         <div className="contact-page__info">
-          <h1>Video editor based in London</h1>
+          <h1>
+            <GatsbyImage
+              style={{ width: "75%", margin: "0 auto" }}
+              alt="only london logo"
+              image={data?.logo.childImageSharp.gatsbyImageData}
+            />
+          </h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.{" "}
+            David Graham is a multi award winning London based editor with over
+            15 years experience in TV, documentary, music videos, commercials,
+            fashion films and branded content.
           </p>
           <a className="get-in-touch" href="email">
             Get in touch for any enquiry

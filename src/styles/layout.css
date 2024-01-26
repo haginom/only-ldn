@@ -20,10 +20,10 @@
   overflow-y: auto;
   overscroll-behavior-y: contain;
   color: white;
-  width: 18.75rem;
+  width: 20.75rem;
   padding: 0.75rem 1rem;
   border-right: 1px solid #fff;
-  transition-duration: 0.65s;
+  transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   backdrop-filter: blur(8px);
 }
@@ -34,7 +34,7 @@
 }
 
 .nav-list--head > li {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   line-height: 1.8;
 }
 
@@ -74,7 +74,7 @@
   top: 0.2rem;
   z-index: 1400;
   display: block;
-  width: 12rem;
+  width: 10rem;
   color: white;
   height: 2.75rem;
   margin: 0.7rem auto;
@@ -168,6 +168,7 @@ div.single-video {
   position: absolute;
   z-index: 10012;
   top: 50%;
+  transform: translateY(-50%);
   text-align: center;
   width: 100%;
   color: white;
@@ -189,7 +190,7 @@ div.single-video {
 .video-information {
   position: absolute;
   z-index: 10012;
-  bottom: 20px;
+  bottom: 10px;
   text-align: center;
   width: 100%;
   color: white;
@@ -198,6 +199,7 @@ div.single-video {
 
 .credits {
   opacity: 0.8;
+  font-size: 1em;
 }
 
 .credits-name {
@@ -208,6 +210,17 @@ div.single-video {
 .credits-job {
   margin-right: 5px;
 }
+
+div.credits > p.credit {
+  margin-bottom: 0rem;
+  margin: 0 auto;
+}
+/* @media (min-width: 628px) {
+  .credits > p.credit {
+    margin-bottom: 0rem;
+    margin: 0 auto;
+  }
+} */
 
 .video-embed__container {
   background: transparent !important;
@@ -246,17 +259,24 @@ div.single-video {
 
 .awards {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 32px;
-  height: 32px;
+  bottom: 2rem;
+  right: 2rem;
   display: flex;
   flex-direction: column;
+}
+
+.awards > * {
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 @media (min-width: 628px) {
   .single-video.full_layout {
     height: 40vw;
+  }
+  .awards > * {
+    width: 5rem;
+    height: 5rem;
   }
 }
 

@@ -29,7 +29,7 @@ const NavContainer = styled.div`
 
 const HamburgerContainer = styled.div<StyledHamburgerContainerProps>`
   position: fixed;
-  left: ${(props: any) => (props.$isOpen ? "15rem" : "1rem")};
+  left: ${(props: any) => (props.$isOpen ? "17rem" : "1rem")};
   z-index: 1500;
   transition-duration: 0.65s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -96,11 +96,6 @@ const Layout: React.FC<LayoutProps> = ({
           isOpen={isOpen}
           setOpen={setOpen}
         />
-        <section className="contact">
-          <a className="contact-link" href="mailto:david@onlyldn.com">
-            <PiEnvelope size={40} />
-          </a>
-        </section>
       </NavContainer>
       {children}
     </main>

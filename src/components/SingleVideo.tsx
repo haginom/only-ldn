@@ -47,6 +47,23 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
     }
   }, [inView]);
 
+  const variants = {
+    show: {
+      opacity: 1,
+      transition: {
+        ease: "easeOut",
+        duration: 0.2,
+      },
+    },
+    hide: {
+      opacity: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 1,
+      },
+    },
+  };
+
   return (
     <article
       onMouseEnter={handleMouseEnter}
@@ -57,11 +74,11 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
     >
       <a href={`/videos/${item?.slug?.current}`}>
         <motion.div
+          key={item?.projectTitle}
+          variants={variants}
           className="single-video-title"
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            visibility: isHovered ? "visible" : "hidden",
-          }}
+          animate={isHovered ? "show" : "hide"}
+          initial="hide"
         >
           <h2 className="video-title">{item?.projectTitle}</h2>
         </motion.div>
@@ -72,7 +89,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
               single ? { width: "100vw", height: "100%" } : { height: "100%" }
             }
             imgStyle={{ objectFit: "cover", height: "100%" }}
-            image={item?.featuredImage.asset.gatsbyImageData}
+            image={item?.featuredImage?.asset.gatsbyImageData}
           />
         </div>
         {featuredVideo && (
@@ -94,11 +111,11 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
         )}
 
         <motion.div
+          key={item.id}
+          variants={variants}
           className="video-information"
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            visibility: isHovered ? "visible" : "hidden",
-          }}
+          animate={isHovered ? "show" : "hide"}
+          initial="hide"
         >
           <div className="credits">
             {creditsArray.map(({ job, name }, index) => (

@@ -23,9 +23,9 @@
   width: 20.75rem;
   padding: 0.75rem 1rem;
   border-right: 1px solid #fff;
-  transition-duration: 0.5s;
+  /* transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px); */
 }
 
 .nav--foot > ul {
@@ -158,6 +158,12 @@ div.single-video {
 .single-video.layout_quarter {
   width: 100%;
   height: 20vw;
+}
+
+.hamburger-container {
+  position: fixed;
+  z-index: 1500;
+  margin-top: 0.5rem;
 }
 
 .hamburger-contact {

@@ -21,7 +21,15 @@ const config: GatsbyConfig = {
       },
     },
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `blurred`,
+        },
+      },
+    },
     "gatsby-plugin-postcss",
     `gatsby-plugin-styled-components`,
     "gatsby-transformer-sharp",

@@ -5,16 +5,16 @@ import Hamburger from "hamburger-react";
 import "../styles/layout.css";
 import styled from "styled-components";
 import { CategoryNode } from "../pages";
-import { PiEnvelope } from "react-icons/pi";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
-
+import { motion } from "framer-motion";
 interface LayoutProps {
   children: React.ReactNode;
   Categories: CategoryNode[];
   selectedCategory?: string | null;
   setSelectedCategory?: React.Dispatch<React.SetStateAction<string | null>>;
+  location?: any;
 }
 
 interface StyledHamburgerContainerProps {
@@ -31,14 +31,14 @@ const HamburgerContainer = styled.div<StyledHamburgerContainerProps>`
   position: fixed;
   left: ${(props: any) => (props.$isOpen ? "17rem" : "1rem")};
   z-index: 1500;
-  transition-duration: 0.65s;
+  transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   margin-top: 0.5rem;
 
   @media screen and (max-width: 628px) {
     right: ${(props: any) => (props.$isOpen ? "1rem" : "initial")};
     left: ${(props: any) => (props.$isOpen ? "initial" : "1rem")};
-    transition-duration: 1.65s;
+    transition-duration: 1.5s;
   }
 `;
 
@@ -47,8 +47,10 @@ const Layout: React.FC<LayoutProps> = ({
   children,
   selectedCategory,
   setSelectedCategory,
+  location,
 }) => {
   const [isOpen, setOpen] = useState(false);
+
   const data = useStaticQuery(graphql`
     query {
       logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
@@ -79,6 +81,7 @@ const Layout: React.FC<LayoutProps> = ({
               }}
             >
               <GatsbyImage
+                loading="eager"
                 image={data?.logo.childImageSharp.gatsbyImageData}
                 imgStyle={{ objectFit: "contain" }}
                 alt="Logo"
@@ -90,6 +93,7 @@ const Layout: React.FC<LayoutProps> = ({
           <Hamburger toggled={isOpen} toggle={setOpen} />
         </HamburgerContainer>
         <Sidebar
+          location={location}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           Categories={Categories}
@@ -97,7 +101,17 @@ const Layout: React.FC<LayoutProps> = ({
           setOpen={setOpen}
         />
       </NavContainer>
-      {children}
+      <motion.div
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+
+          transition: { duration: 0.2, delay: 0.3 },
+        }}
+      >
+        {children}
+      </motion.div>
     </main>
   );
 };

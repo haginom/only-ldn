@@ -125,7 +125,7 @@ export const query = graphql`
   }
 `;
 
-const IndexPage: React.FC<PageProps<QueryData>> = ({ data }) => {
+const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const Categories = data.Categories.edges;
@@ -145,6 +145,7 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data }) => {
 
   return (
     <Layout
+      location={location}
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
       Categories={Categories}

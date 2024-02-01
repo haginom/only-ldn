@@ -1,41 +1,162 @@
 import * as React from "react";
-import { RxCross1 } from "react-icons/rx";
-import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
+import Layout from "../components/Layout";
+import { useState } from "react";
+import type { PageProps } from "gatsby";
 
-export interface QueryData {
-  logo: {
-    childImageSharp: {
-      gatsbyImageData: any;
+export interface CategoryNode {
+  node: {
+    category: string;
+    id: string;
+    released: boolean;
+  };
+}
+
+interface Category {
+  category: string;
+}
+
+export interface PortfolioNode {
+  node: {
+    category: Category | null;
+    id: string;
+    vimeoUrl: string;
+    projectTitle: string;
+    projectDescription: string;
+    orderRank: number;
+    credits: {
+      job: string;
+      name: string;
+    };
+    slug: {
+      source: string;
+      current: string;
+    };
+    featuredImage: {
+      asset: {
+        url: string;
+      };
+    };
+    featuredVideo: {
+      asset: {
+        url: string;
+      };
+    };
+    shortVideo: {
+      _rawAsset: {
+        _ref: string;
+      };
+    };
+    awards: {
+      awardLogo: {
+        asset: {
+          url: string;
+        };
+      };
+      award: string;
     };
   };
 }
+
+interface QueryData {
+  Categories: {
+    edges: CategoryNode[];
+  };
+  PortfolioItems: {
+    edges: PortfolioNode[];
+  };
+}
+
+// export const query = graphql`
+//   query {
+//     logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
+//       childImageSharp {
+//         gatsbyImageData(layout: FULL_WIDTH)
+//       }
+//     }
+//   }
+// `;
+
 export const query = graphql`
   query {
-    logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+    Categories: allSanityCategories {
+      edges {
+        node {
+          category
+          id
+          released
+        }
+      }
+    }
+    PortfolioItems: allSanityPortfolio(sort: { orderRank: ASC }) {
+      edges {
+        node {
+          id
+          category {
+            category
+          }
+          vimeoUrl
+          projectTitle
+          projectDescription
+
+          orderRank
+          credits {
+            job
+            name
+          }
+          slug {
+            source
+            current
+          }
+          featuredImage {
+            asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+            }
+          }
+          featuredVideo {
+            asset {
+              url
+            }
+          }
+          shortVideo {
+            _rawAsset(resolveReferences: { maxDepth: 10 })
+          }
+          awards {
+            awardLogo {
+              asset {
+                gatsbyImageData(width: 50, height: 50, placeholder: BLURRED)
+              }
+            }
+            award
+          }
+        }
       }
     }
   }
 `;
 
-const ContactPage = ({ data }: { data: QueryData }) => {
+const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const Categories = data.Categories.edges;
+
   return (
-    <>
+    <Layout
+      selectedCategory={selectedCategory}
+      setSelectedCategory={setSelectedCategory}
+      Categories={Categories}
+      location={location}
+    >
       <div className="contact-page">
-        <Link className="video-back black" to="/">
-          <RxCross1 size={26} />
-        </Link>
         <div className="contact-page__info">
-          <h1>
+          {/* <h1>
             <GatsbyImage
               style={{ width: "75%", margin: "0 auto" }}
               alt="only london logo"
               image={data?.logo.childImageSharp.gatsbyImageData}
             />
-          </h1>
+          </h1> */}
           <p>
             David Graham is a multi award winning London based editor with over
             15 years experience in TV, documentary, music videos, commercials,
@@ -50,7 +171,7 @@ const ContactPage = ({ data }: { data: QueryData }) => {
           <p>info@onlyldn.com</p>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

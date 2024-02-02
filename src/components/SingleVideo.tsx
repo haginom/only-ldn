@@ -104,6 +104,7 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState("false");
+  const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const { ref, inView } = useInView({
@@ -136,21 +137,8 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
     }
   }, [inView]);
 
-  const variants = {
-    show: {
-      opacity: 1,
-      transition: {
-        ease: "easeOut",
-        duration: 0.2,
-      },
-    },
-    hide: {
-      opacity: 0,
-      transition: {
-        ease: "easeOut",
-        duration: 1,
-      },
-    },
+  const onLoadedData = () => {
+    setIsVideoLoaded(true);
   };
 
   return (
@@ -177,7 +165,13 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
           <GatsbyImage
             alt=""
             style={
-              single ? { width: "100vw", height: "100%" } : { height: "100%" }
+              single
+                ? {
+                    width: "100vw",
+                    height: "100%",
+                    opacity: isVideoLoaded ? 0 : 1,
+                  }
+                : { height: "100%", opacity: isVideoLoaded ? 0 : 1 }
             }
             imgStyle={{ objectFit: "cover", height: "100%" }}
             image={item?.featuredImage?.asset.gatsbyImageData}
@@ -194,6 +188,8 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
               ref={videoRef}
               poster={item.featuredImage?.asset?.url}
               className="video_grid___video"
+              onLoadedData={onLoadedData}
+              style={{ opacity: isVideoLoaded ? 1 : 0 }}
             >
               <source src={item.featuredVideo?.asset?.url} type="video/mp4" />
               <track default kind="description" srcLang="en" />

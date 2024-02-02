@@ -104,9 +104,9 @@ const Layout: React.FC<LayoutProps> = ({
       </NavContainer>
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        exit={{ opacity: 0, filter: "blur(10px)" }}
         transition={{
           type: "spring",
 
@@ -114,7 +114,7 @@ const Layout: React.FC<LayoutProps> = ({
 
           stiffness: 75,
 
-          duration: 0.3,
+          duration: 0.2,
         }}
       >
         {children}

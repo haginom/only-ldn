@@ -73,6 +73,7 @@ const Sidebar: React.FC<SiderbarProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          key="sidebar"
           initial={{ x: "-100%" }}
           animate={{
             x: "0rem",

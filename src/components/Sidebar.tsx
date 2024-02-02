@@ -76,9 +76,9 @@ const Sidebar: React.FC<SiderbarProps> = ({
           initial={{ x: "-100%" }}
           animate={{
             x: "0rem",
-            transition: { duration: 0.5, ease: easing },
+            transition: { duration: 0.65, ease: easing },
           }}
-          exit={{ x: "-100%", transition: { duration: 0.5, ease: easing } }}
+          exit={{ x: "-100%", transition: { duration: 0.65, ease: easing } }}
           className="nav--main"
         >
           <nav className="nav--head">

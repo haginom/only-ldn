@@ -4,6 +4,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import VideoLayout from "../components/VideoLayout";
+import { motion } from "framer-motion";
 
 export interface CategoryNode {
   node: {

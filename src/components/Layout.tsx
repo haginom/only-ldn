@@ -103,12 +103,18 @@ const Layout: React.FC<LayoutProps> = ({
         />
       </NavContainer>
       <motion.div
-        exit={{ opacity: 0 }}
+        key={location.pathname}
         initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          type: "spring",
 
-          transition: { duration: 0.2, delay: 0.3 },
+          mass: 0.35,
+
+          stiffness: 75,
+
+          duration: 0.3,
         }}
       >
         {children}

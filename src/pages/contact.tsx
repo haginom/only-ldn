@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import { useState } from "react";
 import type { PageProps } from "gatsby";
+import { motion } from "framer-motion";
 
 export interface CategoryNode {
   node: {

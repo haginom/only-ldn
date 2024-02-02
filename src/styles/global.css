@@ -110,8 +110,8 @@ article {
 }
 
 .contact-page__info h1,
-p,
-a {
+.contact-page__info p,
+.contact-page__info a {
   font-family: "Playfair Display Variable", sans-serif;
   font-weight: 500;
   max-width: 18rem;
@@ -127,4 +127,8 @@ a.get-in-touch {
 p.title {
   margin-top: 2rem;
   margin-bottom: 0rem;
+}
+
+.row {
+  width: 100vw;
 }

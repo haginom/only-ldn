@@ -150,7 +150,10 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
       setSelectedCategory={setSelectedCategory}
       Categories={Categories}
     >
-      <VideoLayout PortfolioItems={filteredPortfolioItems} />
+      <VideoLayout
+        selectedCategory={selectedCategory}
+        PortfolioItems={filteredPortfolioItems}
+      />
     </Layout>
   );
 };

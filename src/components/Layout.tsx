@@ -9,6 +9,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
+
 interface LayoutProps {
   children: React.ReactNode;
   Categories: CategoryNode[];

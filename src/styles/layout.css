@@ -24,8 +24,8 @@
   padding: 0.75rem 1rem;
   border-right: 1px solid #fff;
   /* transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-  backdrop-filter: blur(8px); */
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); */
+  backdrop-filter: blur(8px);
 }
 
 .nav--foot > ul {
@@ -265,18 +265,31 @@ div.credits > p.credit {
 
 .awards {
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
   display: flex;
   flex-direction: column;
 }
 
 .awards > * {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 @media (min-width: 628px) {
+  .awards {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .awards > * {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
   .single-video.full_layout {
     height: 40vw;
   }

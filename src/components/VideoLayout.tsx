@@ -1,11 +1,12 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import VideoRow from "./VideoRow";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import SingleVideo from "./SingleVideo";
 
 interface VideoLayoutProps {
-  PortfolioItems: any[]; // Adjust the type based on your actual data structure
+  PortfolioItems: any[];
+  selectedCategory: string | null;
 }
 
 const AnimatedSingleVideo = ({
@@ -41,11 +42,6 @@ const generateLayoutForThrees = (itemsArray: any) => {
   let layoutType = 0;
 
   for (let i = 0; i < itemsArray.length; i += 3) {
-    if (i === 0) {
-      i -= 2;
-      continue;
-    }
-
     switch (layoutType) {
       case 0:
         layout.push(
@@ -87,9 +83,38 @@ const generateLayoutForThrees = (itemsArray: any) => {
 const generateLayoutRemainderOne = (itemsArray: any) => {
   let layout = [];
   let layoutType = 0;
+
   for (let i = 0; i < itemsArray.length; i += 3) {
-    if (i === 0) {
-      i -= 2;
+    if (itemsArray.length - layout.length * 3 === 4) {
+      layout.push(
+        <div className="row style_d" key={"B" + layout.length}>
+          <AnimatedSingleVideo
+            motionKey={itemsArray[i].id}
+            singleVideoSingle={false}
+            className="layout_fourth"
+            singleVideoItem={itemsArray[i]}
+          />
+          <AnimatedSingleVideo
+            motionKey={itemsArray[i + 1].id}
+            singleVideoSingle={false}
+            className="layout_fourth"
+            singleVideoItem={itemsArray[i + 1]}
+          />
+          <AnimatedSingleVideo
+            motionKey={itemsArray[i + 2].id}
+            singleVideoSingle={false}
+            className="layout_fourth"
+            singleVideoItem={itemsArray[i + 2]}
+          />
+          <AnimatedSingleVideo
+            motionKey={itemsArray[i + 3].id}
+            singleVideoSingle={false}
+            className="layout_fourth"
+            singleVideoItem={itemsArray[i + 3]}
+          />
+        </div>
+      );
+      i += 1;
       continue;
     }
 
@@ -103,7 +128,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             itemsArray={itemsArray}
           />
         );
-        break;
+        continue;
       case 1:
         layout.push(
           <VideoRow
@@ -113,7 +138,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             itemsArray={itemsArray}
           />
         );
-        break;
+        continue;
       case 2:
         layout.push(
           <VideoRow
@@ -123,41 +148,10 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             itemsArray={itemsArray}
           />
         );
-        break;
+        continue;
     }
-    layoutType = layoutType % 3;
 
-    if (itemsArray.length - 1 - layout.length * 3 === 4) {
-      layout.push(
-        <div className="row style_d" key={"B" + layout.length}>
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 3].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 3]}
-          />
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 4].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 4]}
-          />
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 5].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 5]}
-          />
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 6].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 6]}
-          />
-        </div>
-      );
-      break;
-    }
+    layoutType = (layoutType + 1) % 3;
   }
 
   return layout;
@@ -168,11 +162,7 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
   let layoutType = 0;
 
   for (let i = 0; i < itemsArray.length; i += 3) {
-    if (i === 0) {
-      i -= 2;
-      continue;
-    }
-    if (i === 1) {
+    if (i === 0 || itemsArray.length - i === 4) {
       layout.push(
         <div className="row style_d" key={"C" + layout.length}>
           <AnimatedSingleVideo
@@ -201,83 +191,57 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
           />
         </div>
       );
-      i += 4;
+      i += 1;
+      continue;
     }
-    switch (layoutType) {
-      case 0:
-        layout.push(
-          <VideoRow
-            key={"C" + layout.length}
-            i={i}
-            rowStyle="style_a"
-            itemsArray={itemsArray}
-          />
-        );
-        break;
-      case 1:
-        layout.push(
-          <VideoRow
-            key={"C" + layout.length}
-            i={i}
-            rowStyle="style_b"
-            itemsArray={itemsArray}
-          />
-        );
-        break;
-      case 2:
-        layout.push(
-          <VideoRow
-            key={"C" + layout.length}
-            i={i}
-            rowStyle="style_c"
-            itemsArray={itemsArray}
-          />
-        );
-        break;
-    }
-    layoutType = layoutType % 3;
+    console.log(i, "i");
 
-    if (itemsArray.length - i === 7) {
-      layout.push(
-        <div className="row style_d" key={"C" + layout.length}>
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 3].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 3]}
-          />
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 4].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 4]}
-          />
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 5].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 5]}
-          />
-          <AnimatedSingleVideo
-            motionKey={itemsArray[i + 6].id}
-            singleVideoSingle={false}
-            className="layout_fourth"
-            singleVideoItem={itemsArray[i + 6]}
-          />
-        </div>
-      );
-      break;
+    if (i !== 4) {
+      switch (layoutType) {
+        case 0:
+          layout.push(
+            <VideoRow
+              key={"C" + layout.length}
+              i={i}
+              rowStyle="style_a"
+              itemsArray={itemsArray}
+            />
+          );
+          break;
+        case 1:
+          layout.push(
+            <VideoRow
+              key={"C" + layout.length}
+              i={i}
+              rowStyle="style_b"
+              itemsArray={itemsArray}
+            />
+          );
+          break;
+        case 2:
+          layout.push(
+            <VideoRow
+              key={"C" + layout.length}
+              i={i}
+              rowStyle="style_c"
+              itemsArray={itemsArray}
+            />
+          );
+          break;
+      }
+      layoutType = layoutType + (1 % 3);
     }
   }
   return layout;
 };
 
-const VideoLayout: React.FC<VideoLayoutProps> = ({ PortfolioItems }) => {
-  let divisibleByThree = (PortfolioItems.length - 1) % 3;
-
+const VideoLayout: React.FC<VideoLayoutProps> = ({
+  PortfolioItems,
+  selectedCategory,
+}) => {
   let layout = [];
 
-  if (PortfolioItems.length > 0) {
+  if (PortfolioItems.length > 0 && selectedCategory === null) {
     layout.push(
       <div className="full_layout" key={"C" + layout.length}>
         <AnimatedSingleVideo
@@ -288,7 +252,10 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({ PortfolioItems }) => {
         />
       </div>
     );
+    PortfolioItems.shift();
   }
+
+  let divisibleByThree = PortfolioItems.length % 3;
 
   if (divisibleByThree === 0) {
     layout = layout.concat(generateLayoutForThrees(PortfolioItems));

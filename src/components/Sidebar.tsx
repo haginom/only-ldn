@@ -7,6 +7,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { Link } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 import { motion, AnimatePresence } from "framer-motion";
+import { cubicBezier } from "framer-motion";
 
 interface SiderbarProps {
   Categories: CategoryNode[];
@@ -67,22 +68,33 @@ const Sidebar: React.FC<SiderbarProps> = ({
     </li>
   );
 
+  const easing = cubicBezier(0.075, 0.82, 0.165, 1);
   return (
     <AnimatePresence>
-      <SidebarContainer isOpen={isOpen} className="nav--main">
-        <nav className="nav--head">
-          <ul className="nav-list nav-list--head">{linkElements}</ul>
-        </nav>
-        <nav className="nav--foot">
-          <ul className="nav-list nav-list--foot">
-            <li>
-              <a href="https://vimeo.com/onlyldn">
-                <IoLogoVimeo size={25} />
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </SidebarContainer>
+      {isOpen && (
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{
+            x: "0rem",
+            transition: { duration: 0.5, ease: easing },
+          }}
+          exit={{ x: "-100%", transition: { duration: 0.5, ease: easing } }}
+          className="nav--main"
+        >
+          <nav className="nav--head">
+            <ul className="nav-list nav-list--head">{linkElements}</ul>
+          </nav>
+          <nav className="nav--foot">
+            <ul className="nav-list nav-list--foot">
+              <li>
+                <a href="https://vimeo.com/onlyldn">
+                  <IoLogoVimeo size={25} />
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 };

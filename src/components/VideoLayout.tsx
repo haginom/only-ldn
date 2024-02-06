@@ -40,10 +40,8 @@ const AnimatedSingleVideo = ({
   React.useEffect(() => {
     if (animationComplete && firstLoad) {
       const timer = setTimeout(() => {
-        console.log("firstLoad", firstLoad);
-
         setFirstLoad(false);
-      }, 2000); // Adjust the delay time as needed (in milliseconds)
+      }, 1000); // Adjust the delay time as needed (in milliseconds)
       return () => clearTimeout(timer); // Cleanup function to clear the timer
     }
   }, [animationComplete]);
@@ -53,8 +51,6 @@ const AnimatedSingleVideo = ({
       setAnimationComplete(true);
     }
   };
-
-  console.log("firstLoad", firstLoad);
 
   return (
     <>
@@ -312,7 +308,6 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({
   selectedCategory,
 }) => {
   let layout = [];
-  const { firstLoad, setFirstLoad } = useContext(FirstLoadContext) || {};
 
   const filteredPortfolioItems = selectedCategory
     ? PortfolioItems.filter((item: PortfolioItem) => {

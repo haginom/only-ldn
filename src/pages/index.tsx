@@ -4,7 +4,6 @@ import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import VideoLayout from "../components/VideoLayout";
-import { motion } from "framer-motion";
 import { useContext } from "react";
 import { FirstLoadContext } from "../context/firstLoadContext";
 
@@ -132,15 +131,14 @@ export const query = graphql`
 const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
-  const { setFirstLoad, animationComplete } =
+  const { firstLoad, setFirstLoad, animationComplete } =
     useContext(FirstLoadContext) || {};
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
   React.useEffect(() => {
     const pageSeen = sessionStorage.getItem("page--seen");
-    if (!pageSeen) {
-      setFirstLoad(true);
+    if (!pageSeen && firstLoad) {
       sessionStorage.setItem("page--seen", "1");
     }
   }, []);

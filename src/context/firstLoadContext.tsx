@@ -20,7 +20,7 @@ interface FirstLoadProviderProps {
 }
 
 export const FirstLoadProvider = ({ children }: FirstLoadProviderProps) => {
-  const [firstLoad, setFirstLoad] = useState<boolean>(false);
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
   const [animationComplete, setAnimationComplete] = useState<boolean>(false);
   return (
     <FirstLoadContext.Provider

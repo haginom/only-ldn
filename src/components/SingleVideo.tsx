@@ -109,7 +109,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { ref, inView } = useInView({
     triggerOnce: false,
-    threshold: 0.5,
+    threshold: 0.4,
   });
 
   const handleMouseEnter: React.TouchEventHandler<HTMLDivElement> &
@@ -149,7 +149,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
       onMouseLeave={handleMouseLeave}
       onTouchStart={() => handleMouseEnter(item)}
       onTouchEnd={handleMouseLeave}
-      className={`single-video`}
+      className={`single-video ${inView ? "" : "blur"}`}
       ref={ref}
     >
       <a href={`/videos/${item?.slug?.current}`}>

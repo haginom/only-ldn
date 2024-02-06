@@ -392,3 +392,12 @@ div.credits > p.credit {
   position: absolute;
   right: 0;
 }
+
+@media (max-width: 628px) {
+  .single-video.blur > a > .single-video-title {
+    filter: blur(5px);
+  }
+  .single-video.blur > a > .video-information {
+    filter: blur(5px);
+  }
+}

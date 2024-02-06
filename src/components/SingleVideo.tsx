@@ -36,6 +36,7 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
     bottom: 3.25rem;
     position: absolute;
     height: fit-content;
+    color: green;
 
     h2 {
       font-size: 1.2rem;
@@ -59,6 +60,17 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.credits {
     margin-botton: 3rem;
+  }
+
+  @media screen and (max-width: 628px) {
+    h2.video-title {
+      color: ${(props: StyledVideoComponentProps) =>
+        props.isHovered ? "#808588" : "white"};
+    }
+    p.credit {
+      color: ${(props: StyledVideoComponentProps) =>
+        props.isHovered ? "#808588" : "white"};
+    }
   }
 
   @media screen and (min-width: 628px) {

@@ -138,7 +138,11 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
     <Layout
       isOpen={isOpen}
       setOpen={setOpen}
-      selectedCategory={selectedCategory}
+      selectedCategory={
+        (location.state as { selectedCategory: string })?.selectedCategory
+          ? (location.state as { selectedCategory: string }).selectedCategory
+          : selectedCategory
+      }
       setSelectedCategory={setSelectedCategory}
       Categories={Categories}
       location={location}

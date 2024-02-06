@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({
   isOpen,
   setOpen,
 }) => {
-  const { firstLoad, setFirstLoad } = useContext(FirstLoadContext) || {};
+  const { firstLoad } = useContext(FirstLoadContext) || {};
 
   const data = useStaticQuery(graphql`
     query {

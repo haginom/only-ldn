@@ -50,6 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/videos/${slug}`, // Use slug instead of id
       component: pageTemplate,
+      ownderNodeId: id,
       context: {
         id: id,
         ownerNodeId: id,

@@ -141,6 +141,9 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
     if (!pageSeen && firstLoad) {
       sessionStorage.setItem("page--seen", "1");
     }
+    if (pageSeen) {
+      setFirstLoad(false);
+    }
   }, []);
 
   return (

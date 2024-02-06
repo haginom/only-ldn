@@ -27,13 +27,13 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.single-video-title {
     opacity: 1;
-    margin-left: 0.25rem;
+    margin-left: 0.5rem;
     text-align: left;
     text-transform: capitalize;
     max-width: 80%;
     top: initial;
     transform: initial;
-    bottom: 3rem;
+    bottom: 3.25rem;
     position: absolute;
     height: fit-content;
 
@@ -46,12 +46,12 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.video-information {
     position: absolute;
-    bottom: 0.25rem;
+    bottom: 0.6rem;
+    left: 0.5rem;
     text-align: left;
     text-transform: capitalize;
   }
   div.credits > p.credit {
-    margin-left: 0.25rem;
     margin-bottom: 0rem;
     max-width: initial;
     font-size: 0.87rem;
@@ -169,6 +169,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
                 ? {
                     width: "100vw",
                     height: "100%",
+                    filter: isVideoLoaded ? "blur(1000px)" : "blur(0px)",
                     opacity: isVideoLoaded ? 0 : 1,
                   }
                 : { height: "100%", opacity: isVideoLoaded ? 0 : 1 }

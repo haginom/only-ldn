@@ -5,6 +5,8 @@ import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import VideoLayout from "../components/VideoLayout";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { FirstLoadContext } from "../context/firstLoadContext";
 
 export interface CategoryNode {
   node: {
@@ -17,6 +19,7 @@ export interface CategoryNode {
 interface Category {
   category: string;
 }
+
 export interface PortfolioNode {
   node: {
     category: Category | null;
@@ -128,32 +131,39 @@ export const query = graphql`
 
 const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const { firstLoad, setFirstLoad } = useContext(FirstLoadContext) || {};
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
-  const filteredPortfolioItems = selectedCategory
-    ? PortfolioItems.filter((item) => {
-        return (
-          item.category &&
-          Object.values(item.category).some(
-            (categoryObj) =>
-              categoryObj && categoryObj.category === selectedCategory
-          )
-        );
-      })
-    : PortfolioItems;
+  React.useEffect(() => {
+    const pageSeen = sessionStorage.getItem("page--seen");
+    if (!pageSeen) {
+      setFirstLoad(true);
+      sessionStorage.setItem("page--seen", "1");
+    }
+  }, []);
 
   return (
     <Layout
+      isOpen={isOpen}
+      setOpen={setOpen}
       location={location}
-      selectedCategory={selectedCategory}
+      selectedCategory={
+        (location.state as { selectedCategory: string })?.selectedCategory
+          ? (location.state as { selectedCategory: string }).selectedCategory
+          : selectedCategory
+      }
       setSelectedCategory={setSelectedCategory}
       Categories={Categories}
     >
       <VideoLayout
-        selectedCategory={selectedCategory}
-        PortfolioItems={filteredPortfolioItems}
+        selectedCategory={
+          (location.state as { selectedCategory: string })?.selectedCategory
+            ? (location.state as { selectedCategory: string }).selectedCategory
+            : selectedCategory
+        }
+        PortfolioItems={PortfolioItems}
       />
     </Layout>
   );

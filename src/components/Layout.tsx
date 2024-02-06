@@ -1,5 +1,5 @@
 // src/components/Layout.tsx
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Sidebar from "./Sidebar";
 import Hamburger from "hamburger-react";
 import "../styles/layout.css";
@@ -9,6 +9,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
+import { FirstLoadContext } from "../context/firstLoadContext";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,6 +17,8 @@ interface LayoutProps {
   selectedCategory?: string | null;
   setSelectedCategory?: React.Dispatch<React.SetStateAction<string | null>>;
   location?: any;
+  isOpen: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface StyledHamburgerContainerProps {
@@ -37,9 +40,10 @@ const HamburgerContainer = styled.div<StyledHamburgerContainerProps>`
   margin-top: 0.5rem;
 
   @media screen and (max-width: 628px) {
-    right: ${(props: any) => (props.$isOpen ? "1rem" : "initial")};
-    left: ${(props: any) => (props.$isOpen ? "initial" : "1rem")};
+    right: ${(props: any) => (props.$isOpen ? "0.5rem" : "initial")};
+    left: ${(props: any) => (props.$isOpen ? "initial" : "0.25rem")};
     transition-duration: 1.5s;
+    margin-top: 0.25rem;
   }
 `;
 
@@ -49,8 +53,10 @@ const Layout: React.FC<LayoutProps> = ({
   selectedCategory,
   setSelectedCategory,
   location,
+  isOpen,
+  setOpen,
 }) => {
-  const [isOpen, setOpen] = useState(false);
+  const { firstLoad, setFirstLoad } = useContext(FirstLoadContext) || {};
 
   const data = useStaticQuery(graphql`
     query {
@@ -61,21 +67,22 @@ const Layout: React.FC<LayoutProps> = ({
       }
     }
   `);
-
   const handleLogoClick = () => {
     if (setSelectedCategory) {
       setSelectedCategory(null);
     }
-    setOpen(false);
+    if (setOpen) {
+      setOpen(false);
+    }
   };
 
   return (
     <main>
       <NavContainer>
         <section className="head" role="banner">
-          <h1>
+          <h1 className={`head-title ${firstLoad ? "first-load" : "normal"}`}>
             <Link
-              className="head-title"
+              className="head-title-link"
               to="#"
               onClick={() => {
                 handleLogoClick();
@@ -104,18 +111,18 @@ const Layout: React.FC<LayoutProps> = ({
       </NavContainer>
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0, filter: "blur(10px)" }}
-        animate={{ opacity: 1, filter: "blur(0px)" }}
-        exit={{ opacity: 0, filter: "blur(10px)" }}
-        transition={{
-          type: "spring",
-
-          mass: 0.35,
-
-          stiffness: 75,
-
-          duration: 0.2,
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            duration: 0.3,
+            delay: 0.3,
+            type: "spring",
+            mass: 0.35,
+            ease: "easeOut",
+          },
         }}
+        exit={{ opacity: 0, transition: { duration: 0.1 } }}
       >
         {children}
       </motion.div>

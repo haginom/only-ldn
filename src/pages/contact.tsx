@@ -5,6 +5,8 @@ import Layout from "../components/Layout";
 import { useState } from "react";
 import type { PageProps } from "gatsby";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { FirstLoadContext } from "../context/firstLoadContext";
 
 export interface CategoryNode {
   node: {
@@ -139,11 +141,13 @@ export const query = graphql`
 
 const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isOpen, setOpen] = useState<boolean>(false);
 
   const Categories = data.Categories.edges;
-
   return (
     <Layout
+      isOpen={isOpen}
+      setOpen={setOpen}
       selectedCategory={selectedCategory}
       setSelectedCategory={setSelectedCategory}
       Categories={Categories}

@@ -1,13 +1,17 @@
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 import "./src/styles/global.css";
-
 import "./src/styles/global.css";
 import "@fontsource-variable/playfair-display";
+import RootElement from "./src/components/RootElement";
 
 export const wrapPageElement = ({ element }: { element: React.ReactNode }) => (
   <AnimatePresence mode="wait">{element}</AnimatePresence>
 );
+
+export const wrapRootElement = ({ element }) => {
+  return <RootElement>{element}</RootElement>;
+};
 
 export const shouldUpdateScroll = ({
   routerProps: { location },

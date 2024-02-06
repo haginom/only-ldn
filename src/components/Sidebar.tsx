@@ -48,6 +48,7 @@ const Sidebar: React.FC<SiderbarProps> = ({
         className={selectedCategory === item.node.category ? "selected" : ""}
       >
         <Link
+          state={{ selectedCategory: item.node.category }}
           onClick={() => handleCategoryClick(item.node.category)}
           to={location.pathname === "/" ? "#" : "/"}
         >

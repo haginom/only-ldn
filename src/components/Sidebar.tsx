@@ -3,7 +3,6 @@ import styled from "styled-components";
 import "../styles/layout.css";
 import { CategoryNode } from "../pages";
 import { IoLogoVimeo } from "react-icons/io";
-import { MdOutlineMail } from "react-icons/md";
 import { Link } from "gatsby";
 import { v4 as uuidv4 } from "uuid";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,14 +17,6 @@ interface SiderbarProps {
   location?: any;
 }
 
-const SidebarContainer = styled.div<{ isOpen: any }>`
-  left: ${({ isOpen }: { isOpen: boolean }) => (isOpen ? "0px" : "-20.75rem")};
-
-  @media screen and (max-width: 628px) {
-    left: ${({ isOpen }: { isOpen: boolean }) => (isOpen ? "0px" : "-100%")};
-    transition-duration: 1.65s;
-  }
-`;
 const Sidebar: React.FC<SiderbarProps> = ({
   Categories,
   isOpen,

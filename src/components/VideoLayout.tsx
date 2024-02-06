@@ -34,11 +34,11 @@ const AnimatedSingleVideo = ({
   singleVideoItem: any;
   className: string;
 }) => {
-  const [touched, setTouched] = React.useState(false);
-  const { firstLoad, setFirstLoad } = useContext(FirstLoadContext) || {};
+  const { firstLoad, setFirstLoad, animationComplete, setAnimationComplete } =
+    useContext(FirstLoadContext) || {};
 
   React.useEffect(() => {
-    if (touched && firstLoad) {
+    if (animationComplete && firstLoad) {
       const timer = setTimeout(() => {
         console.log("firstLoad", firstLoad);
 
@@ -46,11 +46,11 @@ const AnimatedSingleVideo = ({
       }, 2000); // Adjust the delay time as needed (in milliseconds)
       return () => clearTimeout(timer); // Cleanup function to clear the timer
     }
-  }, [touched]);
+  }, [animationComplete]);
 
   const handleTouch = () => {
-    if (!touched) {
-      setTouched(true);
+    if (!animationComplete) {
+      setAnimationComplete(true);
     }
   };
 
@@ -62,7 +62,11 @@ const AnimatedSingleVideo = ({
         <motion.div
           {...(dataIntroRole && { "data-intro-role": "intro" })}
           className={`single-video ${className} ${
-            firstLoad && !touched ? "first-load" : touched ? "shrink" : ""
+            firstLoad && !animationComplete
+              ? "first-load"
+              : animationComplete
+              ? "shrink"
+              : ""
           }`}
           key={motionKey}
           initial={{ scale: 0.75, opacity: 0, filter: "blur(100px)" }}
@@ -76,7 +80,7 @@ const AnimatedSingleVideo = ({
         >
           {firstLoad && (
             <span
-              className={touched ? "shrink" : ""}
+              className={animationComplete ? "shrink" : ""}
               data-intro-role="title"
             ></span>
           )}

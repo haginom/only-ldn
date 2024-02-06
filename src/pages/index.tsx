@@ -132,7 +132,8 @@ export const query = graphql`
 const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
-  const { firstLoad, setFirstLoad } = useContext(FirstLoadContext) || {};
+  const { setFirstLoad, animationComplete } =
+    useContext(FirstLoadContext) || {};
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 

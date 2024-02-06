@@ -71,16 +71,6 @@ interface QueryData {
   };
 }
 
-// export const query = graphql`
-//   query {
-//     logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
-//       childImageSharp {
-//         gatsbyImageData(layout: FULL_WIDTH)
-//       }
-//     }
-//   }
-// `;
-
 export const query = graphql`
   query {
     Categories: allSanityCategories {
@@ -155,13 +145,6 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
     >
       <div className="contact-page">
         <div className="contact-page__info">
-          {/* <h1>
-            <GatsbyImage
-              style={{ width: "75%", margin: "0 auto" }}
-              alt="only london logo"
-              image={data?.logo.childImageSharp.gatsbyImageData}
-            />
-          </h1> */}
           <p>
             David Graham is a multi award winning London based editor with over
             15 years experience in TV, documentary, music videos, commercials,

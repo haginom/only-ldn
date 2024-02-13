@@ -90,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({
             >
               <StaticImage
                 loading="eager"
-                src={"../images/ONLY_LOGO_White.png"}
+                src={"/ONLY_LOGO_White.png"}
                 imgStyle={{ objectFit: "contain" }}
                 alt="Logo"
               />

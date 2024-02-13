@@ -73,6 +73,15 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
     }
   }
 
+  @media only screen and (min-width: 628px) and (max-width: 728px) {
+    .single-video-title h2.video-title {
+      font-size: 0.8rem;
+    }
+    div.credits > p.credit {
+      font-size: 0.7rem;
+    }
+  }
+
   @media screen and (min-width: 628px) {
     div.single-video-title {
       text-align: center;

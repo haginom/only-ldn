@@ -5,7 +5,7 @@ import Hamburger from "hamburger-react";
 import "../styles/layout.css";
 import styled from "styled-components";
 import { CategoryNode } from "../pages";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
@@ -88,9 +88,9 @@ const Layout: React.FC<LayoutProps> = ({
                 handleLogoClick();
               }}
             >
-              <GatsbyImage
+              <StaticImage
                 loading="eager"
-                image={data?.logo.childImageSharp.gatsbyImageData}
+                src={"../images/ONLY_LOGO_White.png"}
                 imgStyle={{ objectFit: "contain" }}
                 alt="Logo"
               />

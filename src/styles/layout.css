@@ -34,8 +34,15 @@
 }
 
 .nav-list--head > li {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   line-height: 1.4;
+}
+
+@media (min-width: 628px) {
+  .nav-list--head > li {
+    font-size: 1.7rem;
+    line-height: 1.4;
+  }
 }
 
 .nav-list--head > li:hover {

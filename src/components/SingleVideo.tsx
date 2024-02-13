@@ -27,7 +27,8 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.single-video-title {
     opacity: 1;
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     text-align: left;
     text-transform: capitalize;
     max-width: 80%;

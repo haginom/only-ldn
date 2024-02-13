@@ -176,7 +176,7 @@ p.title {
   animation: translateYAnimation 0.5s forwards;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 628px) {
   [data-intro-role="title"] {
     display: none;
   }

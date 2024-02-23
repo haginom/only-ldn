@@ -122,7 +122,6 @@
   height: 100%;
   overflow: auto;
   overflow-y: scroll;
-  touch-action: none;
 }
 
 .playlist-content > * {
@@ -149,10 +148,12 @@ div.single-video {
   .single-video.full_layout.first-load {
     max-height: 100vh;
     height: 100vh;
+    touch-action: none;
   }
 
   .single-video.full_layout.shrink {
     animation: transformHeight 0.5s forwards;
+    touch-action: auto;
   }
 }
 

@@ -38,6 +38,8 @@ const AnimatedSingleVideo = ({
   const { firstLoad, setFirstLoad, animationComplete, setAnimationComplete } =
     useContext(FirstLoadContext) || {};
 
+  console.log(firstLoad, animationComplete, "FIRSTLOAD ANIMATIONCOMPLETE");
+
   React.useEffect(() => {
     if (animationComplete && firstLoad) {
       const timer = setTimeout(() => {

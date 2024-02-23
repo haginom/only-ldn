@@ -41,7 +41,7 @@ const Sidebar: React.FC<SiderbarProps> = ({
         <Link
           state={{ selectedCategory: item.node.category }}
           onClick={() => handleCategoryClick(item.node.category)}
-          to={location.pathname === "/" ? "#" : "/"}
+          to={`/#${item.node.category}`}
         >
           {item.node.category}
         </Link>
@@ -50,10 +50,11 @@ const Sidebar: React.FC<SiderbarProps> = ({
   });
 
   linkElements.unshift(
-    <li key={0} onClick={() => handleCategoryClick(null)}>
+    <li key={0} onClick={() => handleCategoryClick(" ")}>
       <Link to="/">Home</Link>
     </li>
   );
+
   linkElements.push(
     <li key={linkElements.length} onClick={() => handleCategoryClick(null)}>
       <Link to="/contact">Contact</Link>

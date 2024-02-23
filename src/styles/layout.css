@@ -80,7 +80,7 @@
   top: 0rem;
   z-index: 1400;
   display: block;
-  width: 10.75rem;
+  width: 8.75rem;
   color: white;
   height: 2.75rem;
   margin: 0.7rem auto;
@@ -120,7 +120,8 @@
   flex-wrap: wrap;
   width: 100vw;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
+  overflow-y: scroll;
 }
 
 .playlist-content > * {
@@ -209,7 +210,6 @@ div.single-video {
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
-  width: 100%;
   color: white;
   text-transform: uppercase;
 }
@@ -302,33 +302,27 @@ div.credits > p.credit {
   right: 0.5rem;
   display: flex;
   flex-direction: column;
-}
-
-.awards > * {
-  width: 3rem;
-  height: 3rem;
+  width: 15%;
+  max-width: 4rem;
 }
 
 @media (min-width: 628px) {
   .awards {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    width: 8%;
   }
 
   .awards > * {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 100%;
+    height: auto;
   }
 
   .single-video.full_layout {
     height: 40vw;
-  }
-  .awards > * {
-    width: 5rem;
-    height: 5rem;
   }
 
   #animate-single-video {
@@ -401,10 +395,44 @@ div.credits > p.credit {
 }
 
 @media (max-width: 628px) {
-  .single-video.blur > a > .single-video-title {
-    filter: blur(5px);
+  .single-video > a > .single-video-title,
+  .single-video > a > .video-information {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
   }
+  .single-video.blur > a > .single-video-title,
   .single-video.blur > a > .video-information {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+}
+
+@media (max-width: 628px) {
+  .blurBackground {
     filter: blur(5px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 628px) {
+  .view-container {
+    position: fixed;
+    top: 15%;
+    height: 70vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+}
+
+.video-blurb {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 628px) {
+  .blur {
+    /* filter: blur(5px); */
+    opacity: 0;
+    transition: opacity 0.2s 0.1s ease-in;
   }
 }

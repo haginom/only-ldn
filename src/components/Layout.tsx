@@ -69,7 +69,7 @@ const Layout: React.FC<LayoutProps> = ({
   `);
   const handleLogoClick = () => {
     if (setSelectedCategory) {
-      setSelectedCategory(null);
+      setSelectedCategory(" ");
     }
     if (setOpen) {
       setOpen(false);
@@ -109,8 +109,9 @@ const Layout: React.FC<LayoutProps> = ({
           setOpen={setOpen}
         />
       </NavContainer>
+
       <motion.div
-        style={{ filter: isOpen ? "blur(5px)" : "none" }}
+        className={isOpen ? "blurBackground" : ""}
         key={location.pathname}
         initial={{ opacity: 0 }}
         animate={{

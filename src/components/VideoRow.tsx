@@ -41,17 +41,16 @@ const VideoRow: React.FC<VideoRowProps> = ({ i, rowStyle, itemsArray }) => {
     endIndex: number,
     className: string
   ) => {
-    return itemsArray
-      .slice(startIndex, endIndex)
-      .map((item, index) => (
+    return itemsArray.slice(startIndex, endIndex).map((item, index) => {
+      return (
         <AnimatedSingleVideo
-          key={index}
           className={className}
           motionKey={item.id}
           singleVideoSingle={false}
           singleVideoItem={item}
         />
-      ));
+      );
+    });
   };
 
   return (

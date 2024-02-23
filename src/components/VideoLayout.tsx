@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import VideoRow from "./VideoRow";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import SingleVideo from "./SingleVideo";
 import { useContext } from "react";
 import { FirstLoadContext } from "../context/firstLoadContext";
+import { useRaf } from "react-use";
 
 interface VideoLayoutProps {
   PortfolioItems: any[];
@@ -309,24 +310,25 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({
 }) => {
   let layout = [];
 
-  const filteredPortfolioItems = selectedCategory
-    ? PortfolioItems.filter((item: PortfolioItem) => {
-        return (
-          item.category &&
-          Object.values(item.category).some(
-            (categoryObj) =>
-              categoryObj && categoryObj.category === selectedCategory
-          )
-        );
-      })
-    : PortfolioItems;
+  const filteredPortfolioItems =
+    selectedCategory === null || selectedCategory === " "
+      ? PortfolioItems
+      : PortfolioItems.filter((item: PortfolioItem) => {
+          return (
+            item.category &&
+            Object.values(item.category).some(
+              (categoryObj) =>
+                categoryObj && categoryObj.category === selectedCategory
+            )
+          );
+        });
 
-  if (filteredPortfolioItems.length > 0 && selectedCategory === null) {
+  if (filteredPortfolioItems.length > 0 && selectedCategory === " ") {
     layout.push(
       <div
         className="full_layout"
         data-intro-role="intro"
-        key={"C" + layout.length}
+        key={"D" + layout.length}
       >
         <AnimatedSingleVideo
           dataIntroRole={true}

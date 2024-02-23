@@ -105,7 +105,10 @@ article {
 }
 
 .contact-page__info {
-  padding-top: 100px;
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
   text-align: center;
 }
 

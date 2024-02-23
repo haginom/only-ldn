@@ -27,8 +27,6 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.single-video-title {
     opacity: 1;
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
     text-align: left;
     text-transform: capitalize;
     max-width: 80%;
@@ -49,7 +47,6 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   div.video-information {
     position: absolute;
     bottom: 0.6rem;
-    left: 0.5rem;
     text-align: left;
     text-transform: capitalize;
   }
@@ -65,12 +62,10 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   @media screen and (max-width: 628px) {
     h2.video-title {
-      color: ${(props: StyledVideoComponentProps) =>
-        props.isHovered ? "#808588" : "white"};
+      color: white;
     }
     p.credit {
-      color: ${(props: StyledVideoComponentProps) =>
-        props.isHovered ? "#808588" : "white"};
+      color: white;
     }
   }
 
@@ -124,14 +119,44 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 `;
 
 const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
+  const [isInViewbox, setIsInViewbox] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState("false");
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
-
   const videoRef = useRef<HTMLVideoElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  const options = {
+    root: null,
+    rootMargin: "-200px 0px -80px 0px",
+    threshold: 1,
+  };
+
+  const callback = (entries: any, observer: any) => {
+    entries.forEach((entry: any) => {
+      if (entry.isIntersecting) {
+        setIsInViewbox(true);
+      } else {
+        setIsInViewbox(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const textRefCurrent = textRef.current;
+    if (!textRefCurrent) return; // Check if textRef.current is null
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(textRefCurrent);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [textRef]);
+
   const { ref, inView } = useInView({
     triggerOnce: false,
-    threshold: 0.4,
+    threshold: 0.65,
   });
 
   const handleMouseEnter: React.TouchEventHandler<HTMLDivElement> &
@@ -171,18 +196,10 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
       onMouseLeave={handleMouseLeave}
       onTouchStart={() => handleMouseEnter(item)}
       onTouchEnd={handleMouseLeave}
-      className={`single-video ${inView ? "" : "blur"}`}
+      className="single-video"
       ref={ref}
     >
       <a href={`/videos/${item?.slug?.current}`}>
-        <motion.div
-          key={item?.projectTitle}
-          className="single-video-title"
-          animate={isHovered ? "show" : "hide"}
-          initial="hide"
-        >
-          <h2 className="video-title">{item?.projectTitle}</h2>
-        </motion.div>
         <div className="feature-image">
           <GatsbyImage
             alt=""
@@ -210,7 +227,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
               playsInline
               ref={videoRef}
               poster={item.featuredImage?.asset?.url}
-              className="video_grid___video"
+              className={`video_grid___video ${item.projectTitle}`}
               onLoadedData={onLoadedData}
               style={{ opacity: isVideoLoaded ? 1 : 0 }}
             >
@@ -219,33 +236,47 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
             </video>
           </div>
         )}
-
-        <motion.div
-          key={item.id}
-          className="video-information"
-          animate={isHovered ? "show" : "hide"}
-          initial="hide"
+        <div
+          className={`video-blurb ${isInViewbox ? "" : "blur"}`}
+          ref={textRef}
         >
-          <div className="credits">
-            {creditsArray.map(({ job, name }, index) => (
-              <p key={index} className="credit">
-                <span className="credits-job">{job} </span>|{" "}
-                <span className="credits-name">{name}</span>
-              </p>
-            ))}
+          <motion.div
+            key={item?.projectTitle}
+            className="single-video-title"
+            animate={isHovered ? "show" : "hide"}
+            initial="hide"
+          >
+            <h2 className="video-title">{item?.projectTitle}</h2>
+          </motion.div>
+
+          <motion.div
+            key={item.id}
+            className="video-information"
+            animate={isHovered ? "show" : "hide"}
+            initial="hide"
+          >
+            <div className="credits">
+              {creditsArray.map(({ job, name }, index) => (
+                <p key={index} className="credit">
+                  <span className="credits-job">{job} </span>|{" "}
+                  <span className="credits-name">{name}</span>
+                </p>
+              ))}
+            </div>
+          </motion.div>
+          <div className="awards">
+            {item.awards && item.awards.length > 0
+              ? item.awards.map((award: any, index: number) => (
+                  <GatsbyImage
+                    style={{ maxWidth: "100%" }}
+                    key={index}
+                    className="lozad"
+                    alt={`${String(award.award)} logo`}
+                    image={award.awardLogo.asset.gatsbyImageData}
+                  />
+                ))
+              : null}
           </div>
-        </motion.div>
-        <div className="awards">
-          {item.awards && item.awards.length > 0
-            ? item.awards.map((award: any, index: number) => (
-                <GatsbyImage
-                  key={index}
-                  className="lozad"
-                  alt={`${String(award.award)} logo`}
-                  image={award.awardLogo.asset.gatsbyImageData}
-                />
-              ))
-            : null}
         </div>
       </a>
     </StyledVideoComponent>

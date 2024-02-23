@@ -4,7 +4,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import VideoLayout from "../components/VideoLayout";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FirstLoadContext } from "../context/firstLoadContext";
 
 export interface CategoryNode {
@@ -45,11 +45,7 @@ export interface PortfolioNode {
         url: string;
       };
     };
-    shortVideo: {
-      _rawAsset: {
-        _ref: string;
-      };
-    };
+
     awards: {
       awardLogo: {
         asset: {
@@ -111,13 +107,11 @@ export const query = graphql`
               url
             }
           }
-          shortVideo {
-            _rawAsset(resolveReferences: { maxDepth: 10 })
-          }
+
           awards {
             awardLogo {
               asset {
-                gatsbyImageData(width: 50, height: 50, placeholder: BLURRED)
+                gatsbyImageData(width: 100, height: 100, placeholder: BLURRED)
               }
             }
             award
@@ -136,6 +130,22 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
+  const selectedCategoryFromLocalStorage =
+    localStorage.getItem("localCategory");
+
+  useEffect(() => {
+    const localCategory = localStorage.getItem("localCategory");
+    if (localCategory) {
+      setSelectedCategory(localCategory);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      localStorage.setItem("localCategory", selectedCategory);
+    }
+  }, [selectedCategory]);
+
   React.useEffect(() => {
     const pageSeen = sessionStorage.getItem("page--seen");
     if (!pageSeen && firstLoad) {
@@ -152,8 +162,8 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
       setOpen={setOpen}
       location={location}
       selectedCategory={
-        (location.state as { selectedCategory: string })?.selectedCategory
-          ? (location.state as { selectedCategory: string }).selectedCategory
+        selectedCategoryFromLocalStorage
+          ? selectedCategoryFromLocalStorage
           : selectedCategory
       }
       setSelectedCategory={setSelectedCategory}
@@ -161,8 +171,8 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
     >
       <VideoLayout
         selectedCategory={
-          (location.state as { selectedCategory: string })?.selectedCategory
-            ? (location.state as { selectedCategory: string }).selectedCategory
+          selectedCategoryFromLocalStorage
+            ? selectedCategoryFromLocalStorage
             : selectedCategory
         }
         PortfolioItems={PortfolioItems}

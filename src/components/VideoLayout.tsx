@@ -28,17 +28,17 @@ const AnimatedSingleVideo = ({
   singleVideoItem,
   className,
   dataIntroRole,
+  lastVideo,
 }: {
   dataIntroRole?: boolean;
   motionKey: string;
   singleVideoSingle: any;
   singleVideoItem: any;
   className: string;
+  lastVideo: boolean;
 }) => {
   const { firstLoad, setFirstLoad, animationComplete, setAnimationComplete } =
     useContext(FirstLoadContext) || {};
-
-  console.log(firstLoad, animationComplete, "FIRSTLOAD ANIMATIONCOMPLETE");
 
   React.useEffect(() => {
     if (animationComplete && firstLoad) {
@@ -84,6 +84,7 @@ const AnimatedSingleVideo = ({
             ></span>
           )}
           <SingleVideo
+            lastVideo={lastVideo}
             {...(dataIntroRole && { "data-intro-role": "video" })}
             single={singleVideoSingle}
             item={singleVideoItem}
@@ -102,7 +103,11 @@ const AnimatedSingleVideo = ({
           }}
           onTouchStart={handleTouch}
         >
-          <SingleVideo single={singleVideoSingle} item={singleVideoItem} />
+          <SingleVideo
+            single={singleVideoSingle}
+            item={singleVideoItem}
+            lastVideo={lastVideo}
+          />
         </motion.div>
       )}
     </>
@@ -112,11 +117,13 @@ const AnimatedSingleVideo = ({
 const generateLayoutForThrees = (itemsArray: any) => {
   let layout = [];
   let layoutType = 0;
+
   for (let i = 0; i < itemsArray.length; i += 3) {
     switch (layoutType) {
       case 0:
         layout.push(
           <VideoRow
+            length={itemsArray.length}
             key={"A" + layout.length}
             i={i}
             rowStyle="style_a"
@@ -127,6 +134,7 @@ const generateLayoutForThrees = (itemsArray: any) => {
       case 1:
         layout.push(
           <VideoRow
+            length={itemsArray.length}
             key={"B" + layout.length}
             i={i}
             rowStyle="style_b"
@@ -137,6 +145,7 @@ const generateLayoutForThrees = (itemsArray: any) => {
       case 2:
         layout.push(
           <VideoRow
+            length={itemsArray.length}
             key={"C" + layout.length}
             i={i}
             rowStyle="style_c"
@@ -164,24 +173,28 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i]}
+            lastVideo={i + 1 === itemsArray.length}
           />
           <AnimatedSingleVideo
             motionKey={itemsArray[i + 1].id}
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i + 1]}
+            lastVideo={i + 2 === itemsArray.length}
           />
           <AnimatedSingleVideo
             motionKey={itemsArray[i + 2].id}
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i + 2]}
+            lastVideo={i + 3 === itemsArray.length}
           />
           <AnimatedSingleVideo
             motionKey={itemsArray[i + 3].id}
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i + 3]}
+            lastVideo={i + 4 === itemsArray.length}
           />
         </div>
       );
@@ -193,6 +206,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
       case 0:
         layout.push(
           <VideoRow
+            length={itemsArray.length}
             key={"B" + layout.length}
             i={i}
             rowStyle="style_a"
@@ -203,6 +217,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
       case 1:
         layout.push(
           <VideoRow
+            length={itemsArray.length}
             key={"B" + layout.length}
             i={i}
             rowStyle="style_b"
@@ -213,6 +228,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
       case 2:
         layout.push(
           <VideoRow
+            length={itemsArray.length}
             key={"B" + layout.length}
             i={i}
             rowStyle="style_c"
@@ -231,24 +247,26 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
 const generateLayoutRemainderTwo = (itemsArray: any) => {
   let layout = [];
   let layoutType = 0;
-
   for (let i = 0; i < itemsArray.length; i += 3) {
     if (i === 0 || itemsArray.length - i === 4) {
       layout.push(
         <div className="row style_d" key={"C" + layout.length}>
           <AnimatedSingleVideo
+            lastVideo={i + 1 === itemsArray.length}
             motionKey={itemsArray[i].id}
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i]}
           />
           <AnimatedSingleVideo
+            lastVideo={i + 2 === itemsArray.length}
             motionKey={itemsArray[i + 1].id}
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i + 1]}
           />
           <AnimatedSingleVideo
+            lastVideo={i + 3 === itemsArray.length}
             motionKey={itemsArray[i + 2].id}
             singleVideoSingle={false}
             className="layout_fourth"
@@ -259,6 +277,7 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
             singleVideoSingle={false}
             className="layout_fourth"
             singleVideoItem={itemsArray[i + 3]}
+            lastVideo={i + 4 === itemsArray.length}
           />
         </div>
       );
@@ -271,6 +290,7 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
         case 0:
           layout.push(
             <VideoRow
+              length={itemsArray.length}
               key={"C" + layout.length}
               i={i}
               rowStyle="style_a"
@@ -281,6 +301,7 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
         case 1:
           layout.push(
             <VideoRow
+              length={itemsArray.length}
               key={"C" + layout.length}
               i={i}
               rowStyle="style_b"
@@ -291,6 +312,7 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
         case 2:
           layout.push(
             <VideoRow
+              length={itemsArray.length}
               key={"C" + layout.length}
               i={i}
               rowStyle="style_c"
@@ -335,6 +357,7 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({
         key={"D" + layout.length}
       >
         <AnimatedSingleVideo
+          lastVideo={false}
           dataIntroRole={true}
           motionKey={PortfolioItems[0].id}
           className="full_layout animated-full-video"

@@ -243,9 +243,14 @@ div.single-video {
   font-size: 1em;
 }
 
+.no-left-margin > * {
+  margin-left: 0;
+}
+.left-margin > * {
+  margin-left: 5px;
+}
 .credits-name {
   text-transform: initial;
-  margin-left: 5px;
 }
 
 .credits-job {

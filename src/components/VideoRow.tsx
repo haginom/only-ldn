@@ -6,6 +6,7 @@ interface VideoRowProps {
   i: number;
   rowStyle: string;
   itemsArray: any[];
+  length: number;
 }
 
 const AnimatedSingleVideo = ({
@@ -13,11 +14,13 @@ const AnimatedSingleVideo = ({
   singleVideoSingle,
   singleVideoItem,
   className,
+  lastVideo,
 }: {
   motionKey: any;
   singleVideoSingle: any;
   singleVideoItem: any;
   className: any;
+  lastVideo: boolean;
 }) => {
   return (
     <motion.div
@@ -30,12 +33,21 @@ const AnimatedSingleVideo = ({
         transition: { duration: 0.4, delay: 0, filter: "blur(10px)" },
       }}
     >
-      <SingleVideo single={singleVideoSingle} item={singleVideoItem} />
+      <SingleVideo
+        lastVideo={lastVideo}
+        single={singleVideoSingle}
+        item={singleVideoItem}
+      />
     </motion.div>
   );
 };
 
-const VideoRow: React.FC<VideoRowProps> = ({ i, rowStyle, itemsArray }) => {
+const VideoRow: React.FC<VideoRowProps> = ({
+  i,
+  rowStyle,
+  itemsArray,
+  length,
+}) => {
   const renderVideos = (
     startIndex: number,
     endIndex: number,
@@ -49,6 +61,7 @@ const VideoRow: React.FC<VideoRowProps> = ({ i, rowStyle, itemsArray }) => {
           motionKey={item.id}
           singleVideoSingle={false}
           singleVideoItem={item}
+          lastVideo={endIndex === length}
         />
       );
     });

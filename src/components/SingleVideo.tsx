@@ -8,6 +8,7 @@ import styled from "styled-components";
 interface SingleVideoProps {
   item: any;
   single: boolean;
+  lastVideo: boolean;
 }
 
 interface StyledVideoComponentProps {
@@ -118,7 +119,11 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   }
 `;
 
-const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
+const SingleVideo: React.FC<SingleVideoProps> = ({
+  item,
+  single,
+  lastVideo,
+}) => {
   const [isInViewbox, setIsInViewbox] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState("false");
@@ -237,7 +242,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
           </div>
         )}
         <div
-          className={`video-blurb ${isInViewbox ? "" : "blur"}`}
+          className={`video-blurb ${isInViewbox || lastVideo ? "" : "blur"}`}
           ref={textRef}
         >
           <motion.div
@@ -257,8 +262,16 @@ const SingleVideo: React.FC<SingleVideoProps> = ({ item, single }) => {
           >
             <div className="credits">
               {creditsArray.map(({ job, name }, index) => (
-                <p key={index} className="credit">
-                  <span className="credits-job">{job} </span>|{" "}
+                <p
+                  key={index}
+                  className={`credit ${job ? "left-margin" : "no-left-margin"}`}
+                >
+                  {job ? (
+                    <>
+                      <span className="credits-job">{job}</span>
+                      {" |  "}
+                    </>
+                  ) : null}
                   <span className="credits-name">{name}</span>
                 </p>
               ))}

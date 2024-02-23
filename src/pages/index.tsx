@@ -131,12 +131,16 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
   const selectedCategoryFromLocalStorage =
-    localStorage.getItem("localCategory");
+    typeof window !== "undefined"
+      ? localStorage.getItem("localCategory")
+      : null;
 
   useEffect(() => {
-    const localCategory = localStorage.getItem("localCategory");
-    if (localCategory) {
-      setSelectedCategory(localCategory);
+    if (typeof window !== "undefined") {
+      const localCategory = localStorage.getItem("localCategory");
+      if (localCategory) {
+        setSelectedCategory(localCategory);
+      }
     }
   }, []);
 

@@ -23,7 +23,6 @@ const Sidebar: React.FC<SiderbarProps> = ({
   setOpen,
   selectedCategory,
   setSelectedCategory,
-  location,
 }) => {
   const handleCategoryClick = (category: string | null) => {
     if (setSelectedCategory) {

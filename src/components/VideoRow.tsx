@@ -44,6 +44,7 @@ const VideoRow: React.FC<VideoRowProps> = ({ i, rowStyle, itemsArray }) => {
     return itemsArray.slice(startIndex, endIndex).map((item, index) => {
       return (
         <AnimatedSingleVideo
+          key={item.id}
           className={className}
           motionKey={item.id}
           singleVideoSingle={false}

@@ -110,7 +110,6 @@ const AnimatedSingleVideo = ({
 const generateLayoutForThrees = (itemsArray: any) => {
   let layout = [];
   let layoutType = 0;
-
   for (let i = 0; i < itemsArray.length; i += 3) {
     switch (layoutType) {
       case 0:
@@ -126,7 +125,7 @@ const generateLayoutForThrees = (itemsArray: any) => {
       case 1:
         layout.push(
           <VideoRow
-            key={"A" + layout.length}
+            key={"B" + layout.length}
             i={i}
             rowStyle="style_b"
             itemsArray={itemsArray}
@@ -136,7 +135,7 @@ const generateLayoutForThrees = (itemsArray: any) => {
       case 2:
         layout.push(
           <VideoRow
-            key={"A" + layout.length}
+            key={"C" + layout.length}
             i={i}
             rowStyle="style_c"
             itemsArray={itemsArray}

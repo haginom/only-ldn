@@ -23,6 +23,7 @@ export interface PortfolioNode {
   node: {
     category: Category | null;
     id: string;
+    isOnHomePage: boolean;
     vimeoUrl: string;
     projectTitle: string;
     projectDescription: string;
@@ -84,6 +85,7 @@ export const query = graphql`
           category {
             category
           }
+          isOnHomePage
           vimeoUrl
           projectTitle
           projectDescription
@@ -128,25 +130,23 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const { firstLoad, setFirstLoad, animationComplete } =
     useContext(FirstLoadContext) || {};
   const Categories = data.Categories.edges;
-  const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
+  const PortfolioItems = data.PortfolioItems.edges
+    .map((edge) => edge.node)
+    .filter((node) => node.isOnHomePage === true);
 
   const selectedCategoryFromLocalStorage =
-    typeof window !== "undefined"
-      ? localStorage.getItem("localCategory")
-      : null;
+    sessionStorage.getItem("localCategory");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const localCategory = localStorage.getItem("localCategory");
-      if (localCategory) {
-        setSelectedCategory(localCategory);
-      }
+    const localCategory = sessionStorage.getItem("localCategory");
+    if (localCategory) {
+      setSelectedCategory(localCategory);
     }
   }, []);
 
   useEffect(() => {
     if (selectedCategory) {
-      localStorage.setItem("localCategory", selectedCategory);
+      sessionStorage.setItem("localCategory", selectedCategory);
     }
   }, [selectedCategory]);
 

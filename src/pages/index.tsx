@@ -130,12 +130,15 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const { firstLoad, setFirstLoad, animationComplete } =
     useContext(FirstLoadContext) || {};
   const Categories = data.Categories.edges;
-  const PortfolioItems = data.PortfolioItems.edges
-    .map((edge) => edge.node)
-    .filter((node) => node.isOnHomePage === true);
+  const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
-  const selectedCategoryFromLocalStorage =
-    sessionStorage.getItem("localCategory");
+  let selectedCategoryFromLocalStorage;
+
+  if (typeof sessionStorage !== "undefined") {
+    selectedCategoryFromLocalStorage = sessionStorage.getItem("localCategory");
+  } else {
+    console.error("sessionStorage is not available in this environment.");
+  }
 
   useEffect(() => {
     const localCategory = sessionStorage.getItem("localCategory");

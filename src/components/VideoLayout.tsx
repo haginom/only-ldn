@@ -311,7 +311,7 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({
 
   const filteredPortfolioItems =
     selectedCategory === null || selectedCategory === " "
-      ? PortfolioItems
+      ? PortfolioItems.filter((item) => item.isOnHomePage === true)
       : PortfolioItems.filter((item: PortfolioItem) => {
           return (
             item.category &&
@@ -322,7 +322,10 @@ const VideoLayout: React.FC<VideoLayoutProps> = ({
           );
         });
 
-  if (filteredPortfolioItems.length > 0 && selectedCategory === " ") {
+  if (
+    (filteredPortfolioItems.length > 0 && selectedCategory === " ") ||
+    (filteredPortfolioItems.length > 0 && selectedCategory === null)
+  ) {
     layout.push(
       <div
         className="full_layout"

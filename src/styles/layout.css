@@ -246,7 +246,7 @@ div.single-video {
 .no-left-margin > * {
   margin-left: 0;
 }
-.left-margin > * {
+.left-margin > *:not(:first-child) {
   margin-left: 5px;
 }
 .credits-name {

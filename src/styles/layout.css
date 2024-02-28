@@ -275,12 +275,14 @@ div.credits > p.credit {
   position: unset;
   width: 100vw;
   height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
 }
 
 .video-embed__container iframe {
   background: transparent !important;
   width: 100vw;
-  height: calc(100vh - 40px);
+  height: 100%;
 }
 
 .mov-file {
@@ -310,6 +312,7 @@ div.credits > p.credit {
   display: flex;
   flex-direction: column;
   width: 15%;
+  min-width: 3rem;
   max-width: 4rem;
 }
 
@@ -397,8 +400,8 @@ div.credits > p.credit {
 .video-back {
   color: white;
   padding: 1rem;
-  position: absolute;
-  right: 0;
+  align-self: flex-end;
+  z-index: 1000000;
 }
 
 @media (max-width: 628px) {

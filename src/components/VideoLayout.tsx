@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import SingleVideo from "./SingleVideo";
 import { useContext } from "react";
 import { FirstLoadContext } from "../context/firstLoadContext";
-import { useRaf } from "react-use";
 
 interface VideoLayoutProps {
   PortfolioItems: any[];
@@ -282,10 +281,11 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
         </div>
       );
       i += 1;
+
       continue;
     }
 
-    if (i !== 4) {
+    if (itemsArray.length - i !== 4) {
       switch (layoutType) {
         case 0:
           layout.push(
@@ -321,9 +321,10 @@ const generateLayoutRemainderTwo = (itemsArray: any) => {
           );
           break;
       }
-      layoutType = layoutType + (1 % 3);
+      layoutType = (layoutType + 1) % 3;
     }
   }
+
   return layout;
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 interface VideoProps {
   videoSrcURL: string;
@@ -10,7 +11,6 @@ const Video: React.FC<VideoProps> = ({ videoSrcURL }) => (
       src={videoSrcURL}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       frameBorder="0"
-      allowFullScreen
     />
   </div>
 );

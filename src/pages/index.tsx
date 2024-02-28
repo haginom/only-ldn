@@ -28,6 +28,7 @@ export interface PortfolioNode {
     projectTitle: string;
     projectDescription: string;
     orderRank: number;
+    client: string;
     credits: {
       job: string;
       name: string;
@@ -89,8 +90,8 @@ export const query = graphql`
           vimeoUrl
           projectTitle
           projectDescription
-
           orderRank
+          client
           credits {
             job
             name

@@ -261,20 +261,9 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             initial="hide"
           >
             <div className="credits">
-              {creditsArray.map(({ job, name }, index) => (
-                <p
-                  key={index}
-                  className={`credit ${job ? "left-margin" : "no-left-margin"}`}
-                >
-                  {job ? (
-                    <>
-                      <span className="credits-job">{job}</span>
-                      {" |  "}
-                    </>
-                  ) : null}
-                  <span className="credits-name">{name}</span>
-                </p>
-              ))}
+              <p className={`credit no-left-margin`}>
+                <span className="credits-name">{item?.client}</span>
+              </p>
             </div>
           </motion.div>
           <div className="awards">

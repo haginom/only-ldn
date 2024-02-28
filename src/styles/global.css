@@ -168,8 +168,7 @@ p.title {
 
 @media (max-width: 628px) {
   .video-page--div {
-    height: 60vh;
-    margin-top: 2rem;
+    height: 100%;
   }
 }
 

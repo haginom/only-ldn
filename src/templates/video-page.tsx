@@ -67,10 +67,8 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
           <RxCross1 size={26} />
         </button>
         <Video videoSrcURL={data.sanityPortfolio.vimeoUrl} />
-
-        <StyledP>{data.sanityPortfolio.projectTitle}</StyledP>
         <div>
-          {" "}
+          <StyledP>{data.sanityPortfolio.projectTitle}</StyledP>
           {data.sanityPortfolio?.credits.map((credit, index) => (
             <div key={index}>
               <StyledCredits>Job: {credit.job}</StyledCredits>

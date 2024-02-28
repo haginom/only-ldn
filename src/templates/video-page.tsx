@@ -61,23 +61,21 @@ const StyledCredits = styled.p`
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   console.log(data.sanityPortfolio.projectTitle);
   return (
-    <div>
-      <article className="video-embed__container">
-        <button className="video-back" onClick={() => navigate(-1)}>
-          <RxCross1 size={26} />
-        </button>
-        <Video videoSrcURL={data.sanityPortfolio.vimeoUrl} />
-        <div>
-          <StyledP>{data.sanityPortfolio.projectTitle}</StyledP>
-          {data.sanityPortfolio?.credits.map((credit, index) => (
-            <div key={index}>
-              <StyledCredits>Job: {credit.job}</StyledCredits>
-              <StyledCredits>Name: {credit.name}</StyledCredits>
-            </div>
-          ))}
-        </div>
-      </article>
-    </div>
+    <article className="video-embed__container">
+      <button className="video-back" onClick={() => navigate(-1)}>
+        <RxCross1 size={26} />
+      </button>
+      <Video videoSrcURL={data.sanityPortfolio.vimeoUrl} />
+      <div>
+        <StyledP>{data.sanityPortfolio.projectTitle}</StyledP>
+        {data.sanityPortfolio?.credits.map((credit, index) => (
+          <div key={index}>
+            <StyledCredits>Job: {credit.job}</StyledCredits>
+            <StyledCredits>Name: {credit.name}</StyledCredits>
+          </div>
+        ))}
+      </div>
+    </article>
   );
 };
 

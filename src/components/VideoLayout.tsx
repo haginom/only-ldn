@@ -40,13 +40,23 @@ const AnimatedSingleVideo = ({
     useContext(FirstLoadContext) || {};
 
   React.useEffect(() => {
+    let timer: NodeJS.Timeout;
+
     if (animationComplete && firstLoad) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setFirstLoad(false);
       }, 1000); // Adjust the delay time as needed (in milliseconds)
-      return () => clearTimeout(timer); // Cleanup function to clear the timer
+    } else {
+      // Start animation after 3 seconds if no touch
+      timer = setTimeout(() => {
+        if (!animationComplete) {
+          setAnimationComplete(true);
+        }
+      }, 3000); // 3 seconds delay
     }
-  }, [animationComplete]);
+
+    return () => clearTimeout(timer); // Cleanup function to clear the timer
+  }, [animationComplete, firstLoad]);
 
   const handleTouch = () => {
     if (!animationComplete) {

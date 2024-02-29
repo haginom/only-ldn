@@ -59,7 +59,6 @@ const StyledCredits = styled.p`
 `;
 
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
-  console.log(data.sanityPortfolio.projectTitle);
   return (
     <article className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>

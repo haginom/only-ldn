@@ -28,18 +28,11 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.single-video-title {
     opacity: 1;
-    text-align: left;
     text-transform: capitalize;
-    max-width: 80%;
-    top: initial;
-    transform: initial;
-    bottom: 3.25rem;
-    position: absolute;
-    height: fit-content;
-    color: green;
+    top: 45%;
 
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
       line-height: 1.2;
     }
@@ -47,9 +40,8 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.video-information {
     position: absolute;
-    bottom: 0.6rem;
+    bottom: 0.5rem;
     text-align: left;
-    text-transform: capitalize;
   }
   div.credits > p.credit {
     margin-bottom: 0rem;
@@ -59,6 +51,11 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.credits {
     margin-botton: 3rem;
+  }
+
+  div.single-video-title {
+    width: 85%;
+    text-align: left;
   }
 
   @media screen and (max-width: 628px) {
@@ -85,7 +82,6 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
       position: absolute;
       z-index: 10012;
       top: 50%;
-      max-width: 100%;
       transform: translateY(-50%);
       text-align: center;
       width: 100%;
@@ -105,7 +101,7 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
     div.video-information {
       position: absolute;
-      bottom: 1rem;
+      bottom: 0.75rem;
       visibility: ${(props: StyledVideoComponentProps) =>
         props.isHovered ? "visible" : "hidden"};
       opacity: ${(props: StyledVideoComponentProps) =>
@@ -133,8 +129,8 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
 
   const options = {
     root: null,
-    rootMargin: "-200px 0px -80px 0px",
-    threshold: 1,
+    rootMargin: "-28% 0px -30% 0px",
+    threshold: 0.5,
   };
 
   const callback = (entries: any, observer: any) => {
@@ -175,7 +171,6 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
     setIsHovered(false);
   };
 
-  const creditsArray: Credit[] = Object.values(item?.credits || {});
   const featuredVideo = item.featuredVideo?.asset?.url;
 
   useEffect(() => {
@@ -241,31 +236,36 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             </video>
           </div>
         )}
+
         <div
-          className={`video-blurb ${isInViewbox || lastVideo ? "" : "blur"}`}
+          className={`video-blurb ${
+            isInViewbox || lastVideo ? "in-view" : "blur"
+          }`}
           ref={textRef}
         >
-          <motion.div
-            key={item?.projectTitle}
-            className="single-video-title"
-            animate={isHovered ? "show" : "hide"}
-            initial="hide"
-          >
-            <h2 className="video-title">{item?.projectTitle}</h2>
-          </motion.div>
+          <div>
+            <motion.div
+              key={item?.projectTitle}
+              className="single-video-title"
+              animate={isHovered ? "show" : "hide"}
+              initial="hide"
+            >
+              <h2 className="video-title">{item?.projectTitle}</h2>
+            </motion.div>
 
-          <motion.div
-            key={item.id}
-            className="video-information"
-            animate={isHovered ? "show" : "hide"}
-            initial="hide"
-          >
-            <div className="credits">
-              <p className={`credit no-left-margin`}>
-                <span className="credits-name">{item?.client}</span>
-              </p>
-            </div>
-          </motion.div>
+            <motion.div
+              key={item.id}
+              className="video-information"
+              animate={isHovered ? "show" : "hide"}
+              initial="hide"
+            >
+              <div className="credits">
+                <p className={`credit no-left-margin`}>
+                  <span className="credits-name">{item?.client}</span>
+                </p>
+              </div>
+            </motion.div>
+          </div>
           <div className="awards">
             {item.awards && item.awards.length > 0
               ? item.awards.map((award: any, index: number) => (

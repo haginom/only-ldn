@@ -71,9 +71,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   const [height, setHeight] = React.useState(windowHeight);
 
   React.useEffect(() => {
-    // Check if the initial height is Infinity
-    if (height === Infinity) {
-      // If it is Infinity, wait for the window to finish loading
+    if (windowHeight === Infinity) {
       const handleResize = () => {
         setHeight(window.innerHeight);
       };
@@ -89,7 +87,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   }, [windowHeight]);
 
   return (
-    <StyledArticle height={windowHeight} className="video-embed__container">
+    <StyledArticle height={height} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
         <RxCross1 size={26} />
       </button>

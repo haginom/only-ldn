@@ -5,6 +5,7 @@ import { RxCross1 } from "react-icons/rx";
 import { Link } from "gatsby";
 import { navigate } from "gatsby";
 import styled from "styled-components";
+import { useWindowSize } from "react-use";
 
 interface BlogPostTemplateProps {
   data: {
@@ -58,9 +59,16 @@ const StyledCredits = styled.p`
   margin-top: 0.25rem;
 `;
 
+const StyledArticle = styled.article`
+height ${(props: any) => props.height}px;
+  max-height: ${(props: any) => props.height}px;
+`;
+
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
+  const { height } = useWindowSize();
+
   return (
-    <article className="video-embed__container">
+    <StyledArticle height={height} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
         <RxCross1 size={26} />
       </button>
@@ -74,7 +82,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
           </div>
         ))}
       </div>
-    </article>
+    </StyledArticle>
   );
 };
 

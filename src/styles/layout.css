@@ -252,6 +252,7 @@ div.single-video {
 .no-left-margin > * {
   margin-left: 0;
 }
+
 .left-margin > *:not(:first-child) {
   margin-left: 5px;
 }
@@ -267,12 +268,6 @@ div.credits > p.credit {
   margin-bottom: 0rem;
   margin: 0 auto;
 }
-/* @media (min-width: 628px) {
-  .credits > p.credit {
-    margin-bottom: 0rem;
-    margin: 0 auto;
-  }
-} */
 
 .video-embed__container {
   background: transparent !important;
@@ -280,7 +275,6 @@ div.credits > p.credit {
   padding-bottom: unset;
   position: unset;
   width: 100vw;
-  height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
 }

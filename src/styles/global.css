@@ -181,7 +181,7 @@ p.title {
   z-index: 10;
   display: block;
   width: 50vw;
-  height: 25vw;
+  height: 28vw;
   margin: 0rem auto;
   margin-top: -12vw;
   background-repeat: no-repeat;
@@ -206,11 +206,11 @@ p.title {
 @keyframes translateYAnimation {
   0% {
     transform: translateY(0);
-    height: 28vw;
+    height: 25vw;
     top: 46%;
   }
   100% {
-    top: 2.15rem;
+    top: 2.2rem;
     height: 2.3rem;
   }
 }
@@ -218,7 +218,7 @@ p.title {
 @media (orientation: portrait) {
   [data-intro-role="title"] {
     width: 72vw;
-    height: 12.43636vw;
+    height: 16.43636vw;
     margin: -6.21818vw auto 0;
   }
 }

@@ -70,25 +70,9 @@ const StyledArticle = styled.article`
 
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   const { height: windowHeight } = useWindowSize();
-  console.log(windowHeight);
-  const [height, setHeight] = React.useState(0);
-
-  React.useLayoutEffect(() => {
-    if (windowHeight === Infinity) {
-      const handleResize = () => {
-        setHeight(window.innerHeight);
-      };
-      window.addEventListener("resize", handleResize);
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    } else {
-      setHeight(windowHeight);
-    }
-  }, [windowHeight]);
 
   return (
-    <StyledArticle height={height} className="video-embed__container">
+    <StyledArticle height={windowHeight} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
         <RxCross1 size={26} />
       </button>
@@ -99,6 +83,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
           <div key={index}>
             <StyledCredits>
               {credit.job} : {credit.name}
+              {windowHeight}
             </StyledCredits>
           </div>
         ))}

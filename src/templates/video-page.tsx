@@ -70,7 +70,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   const { height: windowHeight } = useWindowSize();
   const [height, setHeight] = React.useState(windowHeight);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (windowHeight === Infinity) {
       const handleResize = () => {
         setHeight(window.innerHeight);

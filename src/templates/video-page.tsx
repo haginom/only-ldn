@@ -56,12 +56,14 @@ const StyledCredits = styled.p`
   text-align: center;
   font-family: "Playfair Display Variable", sans-serif;
   font-size: 1rem;
-  margin-top: 0.25rem;
+
+  margin-bottom: 1rem;
 `;
 
 const StyledArticle = styled.article`
-height ${(props: any) => props.height}px;
-  max-height: ${(props: any) => props.height}px;
+  height ${(props: any) => props.height}px;
+  max-height: 100vh;
+  overflow: hidden;
 `;
 
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {

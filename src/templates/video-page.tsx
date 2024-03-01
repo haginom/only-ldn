@@ -67,10 +67,29 @@ const StyledArticle = styled.article`
 `;
 
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
-  const { height } = useWindowSize();
+  const { height: windowHeight } = useWindowSize();
+  const [height, setHeight] = React.useState(windowHeight);
+
+  React.useEffect(() => {
+    // Check if the initial height is Infinity
+    if (windowHeight === Infinity) {
+      // If it is Infinity, wait for the window to finish loading
+      const handleResize = () => {
+        setHeight(window.innerHeight);
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    } else {
+      // If the initial height is not Infinity, set it immediately
+      setHeight(windowHeight);
+    }
+  }, [windowHeight]);
 
   return (
-    <StyledArticle height={height} className="video-embed__container">
+    <StyledArticle height={windowHeight} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
         <RxCross1 size={26} />
       </button>

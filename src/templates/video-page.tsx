@@ -2,11 +2,9 @@ import React from "react";
 import { graphql } from "gatsby";
 import Video from "../components/Video";
 import { RxCross1 } from "react-icons/rx";
-import { Link } from "gatsby";
 import { navigate } from "gatsby";
 import styled from "styled-components";
-import { useWindowSize } from "react-use";
-
+import useWindowDimensions from "../hooks/useWindowSize";
 interface BlogPostTemplateProps {
   data: {
     sanityPortfolio: {
@@ -62,17 +60,17 @@ const StyledCredits = styled.p`
 
 const StyledArticle = styled.article`
   height: ${(props: any) => props.height}px;
-  min-height: 720px;
+  min-height: 667px;
   max-height: ${(props: any) =>
     props.height === Infinity ? "760px" : "initial"};
   overflow: hidden;
 `;
 
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
-  const { height: windowHeight } = useWindowSize();
+  const { height } = useWindowDimensions();
 
   return (
-    <StyledArticle height={windowHeight} className="video-embed__container">
+    <StyledArticle height={height} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
         <RxCross1 size={26} />
       </button>
@@ -83,7 +81,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
           <div key={index}>
             <StyledCredits>
               {credit.job} : {credit.name}
-              {windowHeight}
+              {height}
             </StyledCredits>
           </div>
         ))}

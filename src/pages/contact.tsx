@@ -1,13 +1,10 @@
 import * as React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import { useState } from "react";
 import type { PageProps } from "gatsby";
-import { motion } from "framer-motion";
-import { useContext } from "react";
-import { FirstLoadContext } from "../context/firstLoadContext";
-
+import styled from "styled-components";
+import useWindowDimensions from "../hooks/useWindowSize";
 export interface CategoryNode {
   node: {
     category: string;
@@ -123,7 +120,17 @@ export const query = graphql`
   }
 `;
 
+const StyledFullPage = styled.div`
+  height: ${(props: any) => props.height}px;
+  min-height: 667px;
+  max-height: ${(props: any) =>
+    props.height === Infinity ? "760px" : "initial"};
+  overflow: hidden;
+`;
+
 const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
+  const { height } = useWindowDimensions();
+
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
 
@@ -141,7 +148,7 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
       Categories={Categories}
       location={location}
     >
-      <div className="contact-page">
+      <StyledFullPage height={height} className="contact-page">
         <div className="contact-page__info">
           <p>
             David Graham is a multi award winning London based editor with over
@@ -156,7 +163,7 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
           <p className="title">Social Media</p>
           <p>info@onlyldn.com</p>
         </div>
-      </div>
+      </StyledFullPage>
     </Layout>
   );
 };

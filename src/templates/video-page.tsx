@@ -63,12 +63,14 @@ const StyledCredits = styled.p`
 const StyledArticle = styled.article`
   height: ${(props: any) => props.height}px;
   min-height: 720px;
-  max-height: ${(props: any) => (props.height === Infinity ? "760px" : "auto")};
+  max-height: ${(props: any) =>
+    props.height === Infinity ? "760px" : "initial"};
   overflow: hidden;
 `;
 
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
   const { height: windowHeight } = useWindowSize();
+  console.log(windowHeight);
   const [height, setHeight] = React.useState(0);
 
   React.useLayoutEffect(() => {

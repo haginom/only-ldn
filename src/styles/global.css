@@ -112,7 +112,6 @@ iframe {
 }
 
 .contact-page {
-  height: calc(100vh - 4rem);
   margin-top: 4rem;
   background: black;
   color: white;

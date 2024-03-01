@@ -162,6 +162,7 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
           <p>info@onlyldn.com</p>
           <p className="title">Social Media</p>
           <p>info@onlyldn.com</p>
+          <p>{height}</p>
         </div>
       </StyledFullPage>
     </Layout>

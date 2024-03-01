@@ -29,10 +29,9 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   div.single-video-title {
     opacity: 1;
     text-transform: capitalize;
-    top: 45%;
 
     h2 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       line-height: 1.2;
     }
@@ -40,7 +39,6 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   div.video-information {
     position: absolute;
-    bottom: 0.5rem;
     text-align: left;
   }
   div.credits > p.credit {
@@ -61,6 +59,8 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   @media screen and (max-width: 628px) {
     h2.video-title {
       color: white;
+      white-space: nowrap;
+      overflow: scroll;
     }
     p.credit {
       color: white;

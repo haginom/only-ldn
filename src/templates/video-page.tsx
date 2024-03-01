@@ -81,7 +81,6 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
           <div key={index}>
             <StyledCredits>
               {credit.job} : {credit.name}
-              {height}
             </StyledCredits>
           </div>
         ))}

@@ -61,7 +61,7 @@ const StyledCredits = styled.p`
 `;
 
 const StyledArticle = styled.article`
-  height ${(props: any) => props.height}px;
+  height: ${(props: any) => props.height}px;
   max-height: 100vh;
   overflow: hidden;
 `;

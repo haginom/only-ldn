@@ -72,7 +72,7 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
 
   React.useEffect(() => {
     // Check if the initial height is Infinity
-    if (windowHeight === Infinity) {
+    if (height === Infinity) {
       // If it is Infinity, wait for the window to finish loading
       const handleResize = () => {
         setHeight(window.innerHeight);

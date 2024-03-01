@@ -112,8 +112,8 @@ iframe {
 }
 
 .contact-page {
-  height: 95vh;
-  margin-top: 5vh;
+  height: calc(100vh - 4rem);
+  margin-top: 4rem;
   background: black;
   color: white;
   display: flex;
@@ -143,6 +143,9 @@ iframe {
   .contact-page__info p,
   .contact-page__info a {
     font-size: 1rem;
+    max-width: 20rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
   }
 }
 

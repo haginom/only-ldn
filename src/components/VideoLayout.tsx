@@ -46,7 +46,7 @@ const AnimatedSingleVideo = ({
       timer = setTimeout(() => {
         setFirstLoad(false);
       }, 1000); // Adjust the delay time as needed (in milliseconds)
-    } else {
+    } else if (firstLoad) {
       // Start animation after 3 seconds if no touch
       timer = setTimeout(() => {
         if (!animationComplete) {

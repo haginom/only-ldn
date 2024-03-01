@@ -75,13 +75,11 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
       const handleResize = () => {
         setHeight(window.innerHeight);
       };
-
       window.addEventListener("resize", handleResize);
       return () => {
         window.removeEventListener("resize", handleResize);
       };
     } else {
-      // If the initial height is not Infinity, set it immediately
       setHeight(windowHeight);
     }
   }, [windowHeight]);
@@ -96,8 +94,9 @@ const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
         <StyledP>{data.sanityPortfolio.projectTitle}</StyledP>
         {data.sanityPortfolio?.credits.map((credit, index) => (
           <div key={index}>
-            <StyledCredits>Job: {credit.job}</StyledCredits>
-            <StyledCredits>Name: {credit.name}</StyledCredits>
+            <StyledCredits>
+              {credit.job} : {credit.name}
+            </StyledCredits>
           </div>
         ))}
       </div>

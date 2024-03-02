@@ -1,10 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Video from "../components/Video";
-import { RxCross1 } from "react-icons/rx";
-import { navigate } from "gatsby";
-import styled from "styled-components";
-import useWindowDimensions from "../hooks/useWindowSize";
+import VideoLayout from "../components/VideoPageLayout";
+
 interface BlogPostTemplateProps {
   data: {
     sanityPortfolio: {
@@ -33,62 +31,13 @@ interface BlogPostTemplateProps {
   };
 }
 
-const StyledP = styled.p`
-  color: white;
-  text-align: center;
-  font-family: "Playfair Display Variable", sans-serif;
-  font-size: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-    padding-top: 0;
-  }
-`;
-
-const StyledCredits = styled.p`
-  color: white;
-  text-align: center;
-  font-family: "Playfair Display Variable", sans-serif;
-  font-size: 1rem;
-
-  margin-bottom: 1rem;
-`;
-
-const StyledArticle = styled.article`
-  height: ${(props: any) => props.height}px;
-  min-height: 667px;
-  max-height: ${(props: any) =>
-    props.height === Infinity ? "760px" : "initial"};
-  overflow: hidden;
-`;
-
 const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({ data }) => {
-  const { height } = useWindowDimensions();
-
   return (
-    <StyledArticle height={height} className="video-embed__container">
-      <button className="video-back" onClick={() => navigate(-1)}>
-        <RxCross1 size={26} />
-      </button>
+    <VideoLayout data={data.sanityPortfolio}>
       <Video videoSrcURL={data.sanityPortfolio.vimeoUrl} />
-      <div>
-        <StyledP>{data.sanityPortfolio.projectTitle}</StyledP>
-        {data.sanityPortfolio?.credits.map((credit, index) => (
-          <div key={index}>
-            <StyledCredits>
-              {credit.job} : {credit.name}
-            </StyledCredits>
-          </div>
-        ))}
-      </div>
-    </StyledArticle>
+    </VideoLayout>
   );
 };
-
 export default BlogPostTemplate;
 
 export const query = graphql`

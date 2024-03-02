@@ -43,7 +43,6 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
-  // Iterate over the edges and create pages
   result.data.allSanityPortfolio.edges.forEach(({ node }) => {
     const slug = node.slug?.current;
     const id = node.id;

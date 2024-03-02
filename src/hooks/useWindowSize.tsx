@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 function getWindowDimensions() {
   if (typeof window !== "undefined") {
@@ -8,7 +8,6 @@ function getWindowDimensions() {
       height,
     };
   } else {
-    // Return default dimensions or handle the case where window is not available
     return {
       width: 0,
       height: 0,
@@ -20,7 +19,7 @@ export default function useWindowDimensions() {
     getWindowDimensions()
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }

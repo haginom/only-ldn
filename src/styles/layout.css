@@ -21,11 +21,17 @@
   overscroll-behavior-y: contain;
   color: white;
   width: 20.75rem;
-  padding: 0.75rem 1rem;
+  padding: 1.5rem 1.25rem;
   border-right: 1px solid #fff;
   /* transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); */
   backdrop-filter: blur(8px);
+}
+
+@media (max-width: 628px) {
+  .nav--main {
+    padding: 2rem 1.75rem;
+  }
 }
 
 .nav--foot > ul {
@@ -40,8 +46,8 @@
 
 @media (min-width: 628px) {
   .nav-list--head > li {
-    font-size: 1.7rem;
-    line-height: 1.4;
+    font-size: 1.6rem;
+    line-height: 1.2;
   }
 }
 
@@ -242,6 +248,7 @@ div.single-video {
   width: 100%;
   color: white;
   text-transform: uppercase;
+  font-family: "Playfair Display Variable", sans-serif;
 }
 
 .credits {
@@ -310,8 +317,8 @@ div.credits > p.credit {
   position: absolute;
   right: 0.75rem;
   bottom: 0.5rem;
-  min-width: 2rem;
-  max-width: 3.5rem;
+  min-width: 3rem;
+  max-width: 4rem;
 }
 
 @media (min-width: 628px) {

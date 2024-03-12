@@ -105,9 +105,14 @@ iframe {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  border: none;
 }
 
 .nav-list > li > a {
+  font-family: "Playfair Display Variable", sans-serif;
+}
+
+.credits-name {
   font-family: "Playfair Display Variable", sans-serif;
 }
 
@@ -131,7 +136,8 @@ iframe {
 .contact-page__info a {
   font-family: "Playfair Display Variable", sans-serif;
   font-weight: 500;
-  font-size: 1.8em;
+  font-size: 1.7em;
+  line-height: 1.3;
   max-width: 40rem;
   margin-bottom: 2rem;
 }
@@ -164,12 +170,12 @@ p.title {
 
 .video-page--div {
   position: relative;
-  height: 80vh;
+  height: 100%;
 }
 
 @media (max-width: 628px) {
   .video-page--div {
-    height: 100%;
+    height: 80vh;
   }
 }
 

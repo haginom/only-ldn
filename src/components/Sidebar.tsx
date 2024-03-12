@@ -34,7 +34,7 @@ const Sidebar: React.FC<SiderbarProps> = ({
   const linkElements = Categories.map((item, index) => {
     return item.node.released ? (
       <li
-        key={uuidv4()}
+        key={item.node.id}
         className={selectedCategory === item.node.category ? "selected" : ""}
       >
         <Link

@@ -13,6 +13,9 @@ interface BlogPostTemplateProps {
       vimeoUrl: string;
       projectTitle: string;
       projectDescription: string;
+      projectBlurb: string;
+      client: string;
+      clientDetails: string;
       orderRank: number;
       credits: {
         job: string;
@@ -46,6 +49,10 @@ export const query = graphql`
       id
       vimeoUrl
       projectTitle
+      projectBlurb
+      client
+      clientDetails
+
       slug {
         source
         current

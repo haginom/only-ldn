@@ -75,7 +75,6 @@ const Layout: React.FC<LayoutProps> = ({
       setOpen(false);
     }
   };
-
   return (
     <main>
       <NavContainer>
@@ -83,7 +82,7 @@ const Layout: React.FC<LayoutProps> = ({
           <h1 className={`head-title ${firstLoad ? "first-load" : "normal"}`}>
             <Link
               className="head-title-link"
-              to="#"
+              to="/"
               onClick={() => {
                 handleLogoClick();
               }}

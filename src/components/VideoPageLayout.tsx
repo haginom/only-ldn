@@ -11,13 +11,14 @@ interface LayoutProps {
 
 const StyledP = styled.p`
   color: white;
-  text-align: center;
-  font-family: "Playfair Display Variable", sans-serif;
-  font-size: 2rem;
-  padding-left: 1rem;
+  text-align: left;
+  font-family: Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  line-height: 1.2;
   padding-right: 1rem;
   padding-top: 1rem;
-  padding-bottom: 0.5rem;
+  margin-left: 1rem;
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -27,11 +28,12 @@ const StyledP = styled.p`
 
 const StyledCredits = styled.p`
   color: white;
-  text-align: center;
+  text-align: left;
   font-family: "Playfair Display Variable", sans-serif;
-  font-size: 1rem;
-
+  font-size: 0.9rem;
   margin-bottom: 1rem;
+  max-width: 40rem;
+  margin-left: 1rem;
 `;
 
 const StyledArticle = styled.article`
@@ -48,6 +50,7 @@ const StyledArticle = styled.article`
 
 const VideoLayout: React.FC<LayoutProps> = ({ children, data }) => {
   const { height } = useWindowDimensions();
+  console.log(data);
   return (
     <StyledArticle height={height} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
@@ -55,14 +58,12 @@ const VideoLayout: React.FC<LayoutProps> = ({ children, data }) => {
       </button>
       {children}
       <div>
-        <StyledP>{data.projectTitle}</StyledP>
-        {data.credits?.map((credit: any, index: number) => (
-          <div key={index}>
-            <StyledCredits>
-              {credit.job} : {credit.name}
-            </StyledCredits>
-          </div>
-        ))}
+        <div className="project-titles">
+          <StyledP>{data.projectTitle}</StyledP>
+          <StyledCredits>{data.client}</StyledCredits>
+        </div>
+        <StyledCredits>{data.projectBlurb}</StyledCredits>
+        <StyledCredits>{data.clientDetails}</StyledCredits>
       </div>
     </StyledArticle>
   );

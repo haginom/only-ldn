@@ -70,7 +70,7 @@ interface QueryData {
 
 export const query = graphql`
   query {
-    Categories: allSanityCategories {
+    Categories: allSanityCategories(sort: { orderRank: ASC }) {
       edges {
         node {
           category
@@ -133,6 +133,7 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
+  console.log(Categories);
   let selectedCategoryFromLocalStorage;
 
   if (typeof sessionStorage !== "undefined") {

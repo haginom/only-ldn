@@ -42,9 +42,9 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
     text-align: left;
   }
   div.credits > p.credit {
-    margin-bottom: 0rem;
     max-width: initial;
-    font-size: 0.87rem;
+    font-size: 1rem;
+    font-family: "Playfair Display Variable", sans-serif;
   }
 
   div.credits {
@@ -61,6 +61,7 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
       color: white;
       white-space: nowrap;
       overflow: scroll;
+      scrollbar-width: thin;
     }
     p.credit {
       color: white;
@@ -69,10 +70,10 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
   @media only screen and (min-width: 628px) and (max-width: 728px) {
     .single-video-title h2.video-title {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
     div.credits > p.credit {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
     }
   }
 
@@ -95,13 +96,13 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
 
       h2 {
         font-weight: 700;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
     }
 
     div.video-information {
       position: absolute;
-      bottom: 0.75rem;
+      bottom: 1.5rem;
       visibility: ${(props: StyledVideoComponentProps) =>
         props.isHovered ? "visible" : "hidden"};
       opacity: ${(props: StyledVideoComponentProps) =>
@@ -129,7 +130,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
 
   const options = {
     root: null,
-    rootMargin: "-28% 0px -30% 0px",
+    rootMargin: "-28% 0px -13% 0px",
     threshold: 0.5,
   };
 

@@ -23,6 +23,16 @@ const config: GatsbyConfig = {
     },
     "gatsby-plugin-image",
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        start_url: "/",
+        background_color: "#e8e9e1",
+        theme_color: "#e8e9e1",
+        display: "standalone",
+        icon: "src/images/favicon.ico",
+      },
+    },
+    {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {

@@ -155,13 +155,9 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
             15 years experience in TV, documentary, music videos, commercials,
             fashion films and branded content.
           </p>
-          <a className="get-in-touch" href="email">
-            Get in touch for any enquiry
-          </a>
-          <p className="title">Email</p>
-          <p>info@onlyldn.com</p>
-          <p className="title">Social Media</p>
-          <p>info@onlyldn.com</p>
+
+          <p>david@onlyldn.com</p>
+          <p>+44 (0)7793 145 760</p>
         </div>
       </StyledFullPage>
     </Layout>

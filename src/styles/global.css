@@ -101,10 +101,7 @@ input[type="reset"] {
 }
 
 iframe {
-  max-height: 60vw;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   border: none;
 }
 
@@ -168,7 +165,28 @@ p.title {
   width: 100vw;
 }
 
+.video-page--wrapper {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .video-page--wrapper {
+    width: 60%;
+  }
+}
+
 .video-page--div {
+  position: relative;
+}
+.video-page--div .ratio {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* .video-page--div {
   position: relative;
   height: 100%;
 }
@@ -177,7 +195,7 @@ p.title {
   .video-page--div {
     height: 80vh;
   }
-}
+} */
 
 [data-intro-role="title"] {
   position: absolute;

@@ -14,14 +14,13 @@ const StyledP = styled.p`
   text-align: left;
   font-family: Helvetica, sans-serif;
   text-transform: uppercase;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   padding-right: 1rem;
   padding-top: 1rem;
-  margin-left: 1rem;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding-top: 0;
   }
 `;
@@ -33,7 +32,10 @@ const StyledCredits = styled.p`
   font-size: 0.9rem;
   margin-bottom: 1rem;
   max-width: 40rem;
-  margin-left: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const StyledArticle = styled.article`
@@ -50,20 +52,21 @@ const StyledArticle = styled.article`
 
 const VideoLayout: React.FC<LayoutProps> = ({ children, data }) => {
   const { height } = useWindowDimensions();
-  console.log(data);
   return (
     <StyledArticle height={height} className="video-embed__container">
       <button className="video-back" onClick={() => navigate(-1)}>
         <RxCross1 size={26} />
       </button>
-      {children}
-      <div>
-        <div className="project-titles">
-          <StyledP>{data.projectTitle}</StyledP>
-          <StyledCredits>{data.client}</StyledCredits>
+      <div className="video-page--wrapper">
+        {children}
+        <div>
+          <div className="project-titles">
+            <StyledP>{data.projectTitle}</StyledP>
+            <StyledCredits>{data.client}</StyledCredits>
+          </div>
+          <StyledCredits>{data.projectBlurb}</StyledCredits>
+          <StyledCredits>{data.clientDetails}</StyledCredits>
         </div>
-        <StyledCredits>{data.projectBlurb}</StyledCredits>
-        <StyledCredits>{data.clientDetails}</StyledCredits>
       </div>
     </StyledArticle>
   );

@@ -14,12 +14,6 @@ const config: GatsbyConfig = {
 
   plugins: [
     {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-responsive-iframe`],
-      },
-    },
-    {
       resolve: `gatsby-source-sanity`,
       options: {
         projectId: `icbpwj7h`,

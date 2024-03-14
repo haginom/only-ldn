@@ -201,17 +201,17 @@ export const Head: HeadFC = () => (
     <link rel="apple-touch-icon" sizes="180x180" href="/thumbnail.png" />
     <link
       rel="apple-touch-icon-precomposed"
-      href="https:/onlyldn.com/thumbnail.png"
+      href="https://onlyldn.netlify.app/share.png"
     />
     <meta property="og:title" content="David Graham's Only LDN site" />
     <meta
       property="og:description"
       content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
     />
-    <meta property="og:image" content="http:/onlyldn.com/share.png" />
+    <meta property="og:image" content="http://onlyldn.netlify.app/share.png" />
     <meta
       property="og:image:secure_url"
-      content="https:/onlyldn.com/share.png"
+      content="https://onlyldn.netlify.app/share.png"
     />
 
     <meta property="og:image:type" content="png" />
@@ -219,6 +219,9 @@ export const Head: HeadFC = () => (
     <meta name="pinterest-rich-pin" content="false" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ONLY LDN David Graham Portfolio site" />
-    <meta name="twitter:image" content="https://onlyldn.com/Share.png" />
+    <meta
+      name="twitter:image"
+      content="https://onlyldn.netlify.app/share.png"
+    />
   </>
 );

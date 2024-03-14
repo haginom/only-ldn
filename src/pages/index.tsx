@@ -213,5 +213,11 @@ export const Head: HeadFC = () => (
       content={"https://gentle-bonbon-e8ae48.netlify.app/Share.png"}
     />
     <meta name="pinterest-rich-pin" content="false" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ONLY LDN David Graham Portfolio site" />
+    <meta
+      name="twitter:image"
+      content="https://gentle-bonbon-e8ae48.netlify.app/Share.png"
+    />
   </>
 );

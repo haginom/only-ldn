@@ -137,7 +137,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
 
   const options = {
     root: null,
-    rootMargin: "-28% 0px -13% 0px",
+    rootMargin: "-34% 0px -18% 0px",
     threshold: 0.5,
   };
 

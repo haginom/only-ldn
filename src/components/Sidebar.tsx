@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import "../styles/layout.css";
 import { CategoryNode } from "../pages";
 import { IoLogoVimeo } from "react-icons/io";
 import { Link } from "gatsby";
-import { v4 as uuidv4 } from "uuid";
 import { motion, AnimatePresence } from "framer-motion";
 import { cubicBezier } from "framer-motion";
 
@@ -26,6 +24,12 @@ const Sidebar: React.FC<SiderbarProps> = ({
 }) => {
   const handleCategoryClick = (category: string | null) => {
     if (setSelectedCategory) {
+      if (category !== selectedCategory) {
+        console.log("scrolling");
+        if (typeof window !== "undefined") {
+          window.scrollTo(0, 0);
+        }
+      }
       setSelectedCategory(category);
       setOpen(false);
     }

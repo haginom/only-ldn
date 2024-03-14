@@ -9,6 +9,8 @@ interface SingleVideoProps {
   item: any;
   single: boolean;
   lastVideo: boolean;
+  animationComplete?: boolean;
+  firstLoad?: boolean;
 }
 
 interface StyledVideoComponentProps {
@@ -16,11 +18,6 @@ interface StyledVideoComponentProps {
   isActive: boolean;
   onMouseEnter: React.MouseEventHandler<HTMLDivElement> | undefined;
   onMouseLeave: React.MouseEventHandler<HTMLDivElement> | undefined;
-}
-
-interface Credit {
-  job: string;
-  name: string;
 }
 
 const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
@@ -43,7 +40,7 @@ const StyledVideoComponent = styled.article<StyledVideoComponentProps>`
   }
   div.credits > p.credit {
     max-width: initial;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-family: "Playfair Display Variable", sans-serif;
   }
 
@@ -120,6 +117,8 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   item,
   single,
   lastVideo,
+  animationComplete,
+  firstLoad,
 }) => {
   const [isInViewbox, setIsInViewbox] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -127,6 +126,14 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+
+  if (typeof document !== "undefined") {
+    const projectLink = document.querySelector(".project-link");
+
+    // if (projectLink) {
+    //   projectLink.classList.remove("disabled");
+    // }
+  }
 
   const options = {
     root: null,
@@ -189,6 +196,9 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
     setIsVideoLoaded(true);
   };
 
+  console.log(animationComplete, "animationComplete");
+  console.log(firstLoad, "firstLoad");
+
   return (
     <StyledVideoComponent
       isHovered={isHovered}
@@ -200,7 +210,14 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
       className="single-video"
       ref={ref}
     >
-      <a href={`/videos/${item?.slug?.current}`}>
+      <a
+        className={
+          firstLoad && !animationComplete
+            ? "disabled project-link"
+            : "project-link"
+        }
+        href={`/videos/${item?.slug?.current}`}
+      >
         <div className="feature-image">
           <GatsbyImage
             alt=""

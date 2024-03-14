@@ -133,7 +133,6 @@ const IndexPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
   const Categories = data.Categories.edges;
   const PortfolioItems = data.PortfolioItems.edges.map((edge) => edge.node);
 
-  console.log(Categories);
   let selectedCategoryFromLocalStorage;
 
   if (typeof sessionStorage !== "undefined") {

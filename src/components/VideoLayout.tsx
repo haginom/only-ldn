@@ -39,24 +39,24 @@ const AnimatedSingleVideo = ({
   const { firstLoad, setFirstLoad, animationComplete, setAnimationComplete } =
     useContext(FirstLoadContext) || {};
 
-  React.useEffect(() => {
-    let timer: NodeJS.Timeout;
+  // React.useEffect(() => {
+  //   let timer: NodeJS.Timeout;
 
-    if (animationComplete && firstLoad) {
-      timer = setTimeout(() => {
-        setFirstLoad(false);
-      }, 1000); // Adjust the delay time as needed (in milliseconds)
-    } else if (firstLoad) {
-      // Start animation after 3 seconds if no touch
-      timer = setTimeout(() => {
-        if (!animationComplete) {
-          setAnimationComplete(true);
-        }
-      }, 3000); // 3 seconds delay
-    }
+  //   if (animationComplete && firstLoad) {
+  //     timer = setTimeout(() => {
+  //       setFirstLoad(false);
+  //     }, 1000); // Adjust the delay time as needed (in milliseconds)
+  //   } else if (firstLoad) {
+  //     // Start animation after 3 seconds if no touch
+  //     timer = setTimeout(() => {
+  //       if (!animationComplete) {
+  //         setAnimationComplete(true);
+  //       }
+  //     }, 5000); // 5 seconds delay
+  //   }
 
-    return () => clearTimeout(timer); // Cleanup function to clear the timer
-  }, [animationComplete, firstLoad]);
+  //   return () => clearTimeout(timer); // Cleanup function to clear the timer
+  // }, [animationComplete, firstLoad]);
 
   const handleTouch = () => {
     if (!animationComplete) {
@@ -93,6 +93,8 @@ const AnimatedSingleVideo = ({
             ></span>
           )}
           <SingleVideo
+            firstLoad={firstLoad}
+            animationComplete={animationComplete}
             lastVideo={lastVideo}
             {...(dataIntroRole && { "data-intro-role": "video" })}
             single={singleVideoSingle}
@@ -113,6 +115,8 @@ const AnimatedSingleVideo = ({
           onTouchStart={handleTouch}
         >
           <SingleVideo
+            firstLoad={firstLoad}
+            animationComplete={animationComplete}
             single={singleVideoSingle}
             item={singleVideoItem}
             lastVideo={lastVideo}

@@ -105,6 +105,11 @@ iframe {
   border: none;
 }
 
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
 .nav-list > li > a {
   font-family: "Playfair Display Variable", sans-serif;
 }
@@ -137,23 +142,19 @@ iframe {
   line-height: 1.3;
   max-width: 40rem;
   margin-bottom: 2rem;
+  display: block;
 }
 
 @media (max-width: 628px) {
   .contact-page__info h1,
   .contact-page__info p,
   .contact-page__info a {
+    display: block;
     font-size: 1rem;
     max-width: 20rem;
     margin-left: 3rem;
     margin-right: 3rem;
   }
-}
-
-a.get-in-touch {
-  margin-top: 4rem;
-  font-style: italic;
-  text-decoration: underline;
 }
 
 p.title {

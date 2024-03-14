@@ -156,8 +156,9 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
             fashion films and branded content.
           </p>
 
-          <p>david@onlyldn.com</p>
-          <p>+44 (0)7793 145 760</p>
+          <a href="mailto:david@onlyldn.com">david@onlyldn.com</a>
+
+          <a href="tel:+447793 145 760">+44 (0)7793 145 760</a>
         </div>
       </StyledFullPage>
     </Layout>

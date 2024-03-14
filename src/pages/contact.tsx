@@ -5,6 +5,8 @@ import { useState } from "react";
 import type { PageProps } from "gatsby";
 import styled from "styled-components";
 import useWindowDimensions from "../hooks/useWindowSize";
+import type { HeadFC } from "gatsby";
+
 export interface CategoryNode {
   node: {
     category: string;
@@ -166,3 +168,28 @@ const ContactPage: React.FC<PageProps<QueryData>> = ({ data, location }) => {
 };
 
 export default ContactPage;
+
+export const Head: HeadFC = () => (
+  <>
+    <title>Only LDN Contact</title>
+    <meta
+      name="description"
+      content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Thumbnail.png" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="https://gentle-bonbon-e8ae48.netlify.app/Thumbnail.png"
+    />
+    <meta property="og:title" content="Chorus" />
+    <meta
+      property="og:description"
+      content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
+    />
+    <meta
+      property="og:image"
+      content={"https://gentle-bonbon-e8ae48.netlify.app/Share.png"}
+    />
+    <meta name="pinterest-rich-pin" content="false" />
+  </>
+);

@@ -14,13 +14,13 @@ const StyledP = styled.p`
   text-align: left;
   font-family: Helvetica, sans-serif;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   line-height: 1.2;
   padding-right: 1rem;
   padding-top: 1rem;
 
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding-top: 0;
   }
 `;

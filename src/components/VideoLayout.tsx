@@ -72,7 +72,7 @@ const AnimatedSingleVideo = ({
       if (!animationStart) {
         setAnimationComplete(true);
       }
-    }, 5000);
+    }, 3000);
   };
 
   return (

@@ -127,13 +127,13 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  if (typeof document !== "undefined") {
-    const projectLink = document.querySelector(".project-link");
+  // if (typeof document !== "undefined") {
+  //   const projectLink = document.querySelector(".project-link");
 
-    // if (projectLink) {
-    //   projectLink.classList.remove("disabled");
-    // }
-  }
+  //   // if (projectLink) {
+  //   //   projectLink.classList.remove("disabled");
+  //   // }
+  // }
 
   const options = {
     root: null,
@@ -195,9 +195,6 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const onLoadedData = () => {
     setIsVideoLoaded(true);
   };
-
-  console.log(animationComplete, "animationComplete");
-  console.log(firstLoad, "firstLoad");
 
   return (
     <StyledVideoComponent

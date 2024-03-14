@@ -105,9 +105,11 @@ iframe {
   border: none;
 }
 
-a.disabled {
-  pointer-events: none;
-  cursor: default;
+@media (max-width: 628px) {
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
 }
 
 .nav-list > li > a {

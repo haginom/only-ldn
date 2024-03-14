@@ -213,7 +213,11 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             ? "disabled project-link"
             : "project-link"
         }
-        href={`/videos/${item?.slug?.current}`}
+        href={
+          firstLoad && !animationComplete
+            ? `#`
+            : `/videos/${item?.slug?.current}`
+        }
       >
         <div className="feature-image">
           <GatsbyImage

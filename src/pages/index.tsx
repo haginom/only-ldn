@@ -201,23 +201,17 @@ export const Head: HeadFC = () => (
     <link rel="apple-touch-icon" sizes="180x180" href="/Thumbnail.png" />
     <link
       rel="apple-touch-icon-precomposed"
-      href="https://gentle-bonbon-e8ae48.netlify.app/Thumbnail.png"
+      href="https:/onlyldn.com/Thumbnail.png"
     />
     <meta property="og:title" content="Chorus" />
     <meta
       property="og:description"
       content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
     />
-    <meta
-      property="og:image"
-      content={"https://gentle-bonbon-e8ae48.netlify.app/Share.png"}
-    />
+    <meta property="og:image" content={"https:/onlyldn.com/Share.png"} />
     <meta name="pinterest-rich-pin" content="false" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ONLY LDN David Graham Portfolio site" />
-    <meta
-      name="twitter:image"
-      content="https://gentle-bonbon-e8ae48.netlify.app/Share.png"
-    />
+    <meta name="twitter:image" content="https://onlyldn.com/Share.png" />
   </>
 );

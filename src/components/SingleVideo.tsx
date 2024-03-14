@@ -124,6 +124,8 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
   const [isHovered, setIsHovered] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState("false");
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -196,6 +198,21 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
     setIsVideoLoaded(true);
   };
 
+  useEffect(() => {
+    function handleResize() {
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth <= 768); // Adjust the width threshold according to your needs
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <StyledVideoComponent
       isHovered={isHovered}
@@ -214,7 +231,7 @@ const SingleVideo: React.FC<SingleVideoProps> = ({
             : "project-link"
         }
         href={
-          firstLoad && !animationComplete
+          firstLoad && !animationComplete && isMobile
             ? `#`
             : `/videos/${item?.slug?.current}`
         }

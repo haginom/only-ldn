@@ -113,7 +113,7 @@ a.disabled {
 @media (min-width: 628px) {
   a.disabled {
     pointer-events: initial;
-    cursor: default;
+    cursor: pointer;
   }
 }
 

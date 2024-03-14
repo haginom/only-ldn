@@ -7,7 +7,10 @@ interface VideoProps {
 
 const Video: React.FC<VideoProps> = ({ videoSrcURL }) => (
   <div className="video-page--div">
-    <img className="ratio" src="http://placehold.it/16x9" />
+    <img
+      className="ratio"
+      src="https://placehold.co/600x400/000000/FFFFFF/png"
+    />
     <iframe
       src={videoSrcURL}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"

@@ -58,15 +58,15 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   const { firstLoad } = useContext(FirstLoadContext) || {};
 
-  const data = useStaticQuery(graphql`
-    query {
-      logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
-        childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     logo: file(relativePath: { eq: "ONLY_LOGO_White.png" }) {
+  //       childImageSharp {
+  //         gatsbyImageData(layout: FULL_WIDTH)
+  //       }
+  //     }
+  //   }
+  // `);
   const handleLogoClick = () => {
     if (setSelectedCategory) {
       setSelectedCategory(" ");

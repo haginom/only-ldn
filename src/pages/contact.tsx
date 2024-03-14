@@ -176,17 +176,17 @@ export const Head: HeadFC = () => (
       name="description"
       content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
     />
-    <link rel="apple-touch-icon" sizes="180x180" href="/Thumbnail.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/thumbnail.png" />
     <link
       rel="apple-touch-icon-precomposed"
-      href="https://onlyldn.com/Thumbnail.png"
+      href="https://onlyldn.com/thumbnail.png"
     />
     <meta property="og:title" content="Chorus" />
     <meta
       property="og:description"
       content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
     />
-    <meta property="og:image" content={"https://onlyldn.com/Share.png"} />
+    <meta property="og:image" content={"https://onlyldn.com/share.png"} />
     <meta name="pinterest-rich-pin" content="false" />
   </>
 );

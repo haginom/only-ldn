@@ -106,6 +106,7 @@ iframe {
 }
 
 a.disabled {
+  display: block;
   pointer-events: none;
   cursor: default;
 }

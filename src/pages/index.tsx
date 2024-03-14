@@ -208,7 +208,14 @@ export const Head: HeadFC = () => (
       property="og:description"
       content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
     />
-    <meta property="og:image" content="https:/onlyldn.com/share.png" />
+    <meta property="og:image" content="http:/onlyldn.com/share.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https:/onlyldn.com/share.png"
+    />
+
+    <meta property="og:image:type" content="png" />
+
     <meta name="pinterest-rich-pin" content="false" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ONLY LDN David Graham Portfolio site" />

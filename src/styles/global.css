@@ -106,9 +106,8 @@ iframe {
 }
 
 a.disabled {
-  display: block;
   pointer-events: none;
-  cursor: default;
+  cursor: none;
 }
 
 @media (min-width: 628px) {

@@ -36,32 +36,43 @@ const AnimatedSingleVideo = ({
   className: string;
   lastVideo: boolean;
 }) => {
-  const { firstLoad, setFirstLoad, animationComplete, setAnimationComplete } =
-    useContext(FirstLoadContext) || {};
+  const {
+    firstLoad,
+    setFirstLoad,
+    animationComplete,
+    setAnimationComplete,
+    animationStart,
+    setAnimationStart,
+  } = useContext(FirstLoadContext) || {};
 
   React.useEffect(() => {
     let timer: NodeJS.Timeout;
 
-    if (animationComplete && firstLoad) {
+    if (animationStart && firstLoad) {
       timer = setTimeout(() => {
         setFirstLoad(false);
       }, 1000); // Adjust the delay time as needed (in milliseconds)
     } else if (firstLoad) {
       // Start animation after 3 seconds if no touch
       timer = setTimeout(() => {
-        if (!animationComplete) {
-          setAnimationComplete(true);
+        if (!animationStart) {
+          setAnimationStart(true);
         }
       }, 5000); // 5 seconds delay
     }
 
     return () => clearTimeout(timer); // Cleanup function to clear the timer
-  }, [animationComplete, firstLoad]);
+  }, [animationStart, firstLoad]);
 
   const handleTouch = () => {
-    if (!animationComplete) {
-      setAnimationComplete(true);
+    if (!animationStart) {
+      setAnimationStart(true);
     }
+    setTimeout(() => {
+      if (!animationStart) {
+        setAnimationComplete(true);
+      }
+    }, 5000);
   };
 
   return (
@@ -70,9 +81,9 @@ const AnimatedSingleVideo = ({
         <motion.div
           {...(dataIntroRole && { "data-intro-role": "intro" })}
           className={`single-video ${className} ${
-            firstLoad && !animationComplete
+            firstLoad && !animationStart
               ? "first-load"
-              : animationComplete
+              : animationStart
               ? "shrink"
               : ""
           }`}
@@ -88,7 +99,7 @@ const AnimatedSingleVideo = ({
         >
           {firstLoad && (
             <span
-              className={animationComplete ? "shrink" : ""}
+              className={animationStart ? "shrink" : ""}
               data-intro-role="title"
             ></span>
           )}

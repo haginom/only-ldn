@@ -20,7 +20,7 @@ const StyledP = styled.p`
   padding-top: 1rem;
 
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding-top: 0;
   }
 `;
@@ -34,7 +34,7 @@ const StyledCredits = styled.p`
   max-width: 40rem;
 
   @media (max-width: 768px) {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -47,6 +47,7 @@ const StyledArticle = styled.article`
 
   @media (min-width: 768px) {
     min-height: 100vh;
+    height: fit-content;
   }
 `;
 

@@ -12,7 +12,7 @@ const Video: React.FC<VideoProps> = ({ videoSrcURL }) => (
       src="https://placehold.co/1600x900/000000/FFFFFF/png"
     />
     <iframe
-      src={videoSrcURL}
+      src={`${videoSrcURL}?autoplay=1&loop=1&autopause=0`}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
     />
   </div>

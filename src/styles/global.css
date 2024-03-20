@@ -174,7 +174,7 @@ p.title {
 }
 
 .video-page--wrapper {
-  width: 85%;
+  width: 88%;
   height: 100%;
   margin: 0 auto;
 }
@@ -185,9 +185,9 @@ p.title {
   }
 }
 
-@media (min-width: 1328px) {
+@media (min-width: 1440px) {
   .video-page--wrapper {
-    width: 85%;
+    width: 80%;
     height: 100%;
     margin: 0 auto;
   }

@@ -174,14 +174,14 @@ p.title {
 }
 
 .video-page--wrapper {
-  width: 72%;
+  width: 80%;
   height: 100%;
   margin: 0 auto;
 }
 
 @media (min-width: 1328px) {
   .video-page--wrapper {
-    width: 80%;
+    width: 90%;
     height: 100%;
     margin: 0 auto;
   }
@@ -190,6 +190,7 @@ p.title {
 .video-page--div {
   position: relative;
 }
+
 .video-page--div .ratio {
   display: block;
   width: 100%;

@@ -297,6 +297,12 @@ div.credits > p.credit {
   height: 100%; */
 }
 
+@media (max-width: 768px) {
+  .project-titles--wrapper {
+    margin-top: 0.5rem;
+  }
+}
+
 .project-titles {
   margin-top: 0.25rem;
 }

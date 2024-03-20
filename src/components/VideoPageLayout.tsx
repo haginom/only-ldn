@@ -67,7 +67,7 @@ const VideoLayout: React.FC<LayoutProps> = ({ children, data }) => {
       </button>
       <div className="video-page--wrapper">
         {children}
-        <div>
+        <div className="project-titles--wrapper">
           <div className="project-titles">
             <StyledP>{data.projectTitle}</StyledP>
             <StyledCredits>{data.client}</StyledCredits>

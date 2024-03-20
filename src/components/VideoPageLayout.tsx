@@ -20,7 +20,7 @@ const StyledP = styled.p`
   padding-top: 1rem;
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding-top: 0;
   }
 `;
@@ -47,6 +47,9 @@ const StyledArticle = styled.article`
 
   @media (min-width: 768px) {
     min-height: 100vh;
+  }
+
+  @media (min-width: 1290px) {
     height: fit-content;
   }
 `;

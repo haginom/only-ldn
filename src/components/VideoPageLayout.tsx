@@ -42,11 +42,15 @@ const StyledArticle = styled.article`
   height: ${(props: any) => props.height}px;
   min-height: 667px;
   max-height: ${(props: any) =>
-    props.height === Infinity ? "760px" : "initial"};
+    props.height === Infinity
+      ? "760px"
+      : props.height === 0
+      ? "100vh"
+      : "initial"};
   overflow: hidden;
 
   @media (min-width: 768px) {
-    min-height: 100vh;
+    height: 100vh;
   }
 
   @media (min-width: 1290px) {

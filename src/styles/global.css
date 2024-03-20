@@ -179,6 +179,12 @@ p.title {
   margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+  .video-page--wrapper {
+    width: 72%;
+  }
+}
+
 @media (min-width: 1328px) {
   .video-page--wrapper {
     width: 90%;

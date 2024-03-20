@@ -411,7 +411,8 @@ div.credits > p.credit {
 
 .video-back {
   color: white;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-right: 1rem;
   align-self: flex-end;
   z-index: 1000000;
 }

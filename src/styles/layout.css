@@ -419,8 +419,15 @@ div.credits > p.credit {
   color: white;
   padding-top: 1rem;
   padding-right: 1rem;
+
   align-self: flex-end;
   z-index: 1000000;
+}
+
+@media (max-width: 628px) {
+  .video-back {
+    padding-bottom: 1rem;
+  }
 }
 
 @media (max-width: 628px) {

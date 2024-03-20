@@ -174,14 +174,14 @@ p.title {
 }
 
 .video-page--wrapper {
-  width: 80%;
+  width: 85%;
   height: 100%;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .video-page--wrapper {
-    width: 72%;
+    width: 65%;
   }
 }
 

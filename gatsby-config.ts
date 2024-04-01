@@ -4,8 +4,8 @@ process.env.VERBOSE_NODE_MANIFEST = "true";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `onlyldn`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `onlyLDN`,
+    siteUrl: `https://www.onlyldn.com`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

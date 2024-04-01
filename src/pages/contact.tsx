@@ -181,7 +181,7 @@ export const Head: HeadFC = () => (
       rel="apple-touch-icon-precomposed"
       href="https://onlyldn.netlify.app/share.png"
     />
-    <meta property="og:title" content="David Graham's Only LDN site" />
+    <meta property="og:title" content="OnlyLDN" />
     <meta
       property="og:description"
       content="David Graham is a multi award winning London based editor with over 15 years experience in TV, documentary, music videos, commercials, fashion films and branded content."
@@ -196,7 +196,7 @@ export const Head: HeadFC = () => (
 
     <meta name="pinterest-rich-pin" content="false" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ONLY LDN David Graham Portfolio site" />
+    <meta name="twitter:title" content="OnlyLDN" />
     <meta
       name="twitter:image"
       content="https://onlyldn.netlify.app/share.png"

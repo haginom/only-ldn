@@ -237,7 +237,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             itemsArray={itemsArray}
           />
         );
-        continue;
+        break;
       case 1:
         layout.push(
           <VideoRow
@@ -248,7 +248,7 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             itemsArray={itemsArray}
           />
         );
-        continue;
+        break;
       case 2:
         layout.push(
           <VideoRow
@@ -259,9 +259,8 @@ const generateLayoutRemainderOne = (itemsArray: any) => {
             itemsArray={itemsArray}
           />
         );
-        continue;
+        break;
     }
-
     layoutType = (layoutType + 1) % 3;
   }
 
